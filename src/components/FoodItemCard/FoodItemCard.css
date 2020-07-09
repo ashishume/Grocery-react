@@ -1,0 +1,13 @@
+.card {
+  display: inline-block !important;
+  margin: 20px 10px !important;
+}
+
+.ui.card,
+.ui.cards > .card {
+  width: 170px !important;
+}
+
+/* .card::-webkit-scrollbar {
+  display: none !important;
+} */
