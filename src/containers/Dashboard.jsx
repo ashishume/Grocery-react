@@ -3,6 +3,7 @@ import FoodItemCard from "../components/FoodItemCard/FoodItemCard";
 import Navbar from "../Shared/Navbar/Navbar";
 import Carousel from "react-multi-carousel";
 import ImageCarousel from "../components/ImageCarousel/ImageCarousel";
+import ImageUpload from "./ImageUpload";
 const responsive = {
   superLargeDesktop: {
     breakpoint: { max: 4000, min: 3000 },
@@ -33,7 +34,10 @@ class Dashboard extends Component {
     return (
       <div>
         <Navbar />
-        <ImageCarousel onItemClickEvent={(e) => this.onItemClickEvent(e)} />
+
+        <ImageUpload />
+
+        {/* <ImageCarousel onItemClickEvent={(e) => this.onItemClickEvent(e)} />
         <Carousel responsive={responsive}>
           <FoodItemCard
             addProductOnCart={(e) => this.addProductOnCartHandler(e)}
@@ -59,8 +63,8 @@ class Dashboard extends Component {
           <FoodItemCard
             addProductOnCart={(e) => this.addProductOnCartHandler(e)}
           />
-        </Carousel>
-        ;
+        </Carousel> */}
+        {/* ; */}
       </div>
     );
   }
