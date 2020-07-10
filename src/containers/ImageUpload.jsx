@@ -1,21 +1,27 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import { storage } from "../firebase";
-import { Input, Button } from "semantic-ui-react";
-const ImageUpload = () => {
+import { Input, Button, Message, FormGroup, Progress } from "semantic-ui-react";
+
+
+
+const ImageUpload = (props) => {
   const [image, setImage] = useState(null);
+  const [percent, setPercent] = useState(0);
+  const [url, setUrl] = useState("");
+  const [totalBytes, setTotalBytes] = useState(0);
   const handleImageAsFile = (e) => {
     const image = e.target.files[0];
+    setTotalBytes(image.size);
     setImage(image);
   };
 
   const handleUploadImage = (e) => {
     e.preventDefault();
-
     const uploadTask = storage.ref(`images/${image.name}`).put(image);
     uploadTask.on(
       "state_changed",
       (snapshot) => {
-        console.log(snapshot);
+        setPercent(parseInt((snapshot.bytesTransferred / totalBytes) * 100));
       },
       (error) => {
         console.log(error);
@@ -26,18 +32,34 @@ const ImageUpload = () => {
           .child(image.name)
           .getDownloadURL()
           .then((url) => {
-            console.log("===>", url);
+            setUrl(url);
+            props.UploadedUrl(url);
           });
       }
     );
   };
   return (
     <div>
-      <form>
-        <Input type="file" onChange={handleImageAsFile} />
+      <FormGroup widths="equal">
+        <Input
+          type="file"
+          style={{ width: "100%" }}
+          onChange={handleImageAsFile}
+        />
 
-        <Button onClick={handleUploadImage}>Upload</Button>
-      </form>
+        <Button
+          color="instagram"
+          onClick={handleUploadImage}
+          disabled={image === null}
+        >
+          Upload
+        </Button>
+      </FormGroup>
+      {percent > 0 && percent < 100 ? (
+        <Progress percent={percent} indicating />
+      ) : null}
+      {url !== "" ? <Message color="green">Upload success</Message> : null}
+      <br />
     </div>
   );
 };

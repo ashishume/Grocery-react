@@ -6,14 +6,14 @@ const FoodItemCard = (props) => {
   return (
     <Card className="card">
       <Image
-        src={require("../../assets/bournvita-750-g-0-20200621.jpeg")}
+        src={props.url}
         wrapped
         ui={false}
       />
       <Card.Content>
-        <Card.Header>Bornvita 750g with free packets</Card.Header>
+        <Card.Header>{props.name}</Card.Header>
         <Card.Meta>
-          <strike>M.R.P ₹500</strike>
+  <strike>M.R.P ₹500</strike>
         </Card.Meta>
         <Card.Description>
           <h3>

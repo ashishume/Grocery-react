@@ -4,6 +4,10 @@ import Navbar from "../Shared/Navbar/Navbar";
 import Carousel from "react-multi-carousel";
 import ImageCarousel from "../components/ImageCarousel/ImageCarousel";
 import ImageUpload from "./ImageUpload";
+import Category from "./Category";
+import { connect } from "react-redux";
+import { List, Container } from "semantic-ui-react";
+import { showProductsByCategoryId } from "../store/actions/products";
 const responsive = {
   superLargeDesktop: {
     breakpoint: { max: 4000, min: 3000 },
@@ -34,40 +38,38 @@ class Dashboard extends Component {
     return (
       <div>
         <Navbar />
+        <Container>
+          {/* <ImageCarousel onItemClickEvent={(e) => this.onItemClickEvent(e)} /> */}
+          {
+            // console.log(this.props.category)
 
-        <ImageUpload />
-
-        {/* <ImageCarousel onItemClickEvent={(e) => this.onItemClickEvent(e)} />
-        <Carousel responsive={responsive}>
-          <FoodItemCard
-            addProductOnCart={(e) => this.addProductOnCartHandler(e)}
-          />
-          <FoodItemCard
-            addProductOnCart={(e) => this.addProductOnCartHandler(e)}
-          />
-          <FoodItemCard
-            addProductOnCart={(e) => this.addProductOnCartHandler(e)}
-          />
-          <FoodItemCard
-            addProductOnCart={(e) => this.addProductOnCartHandler(e)}
-          />
-          <FoodItemCard
-            addProductOnCart={(e) => this.addProductOnCartHandler(e)}
-          />
-          <FoodItemCard
-            addProductOnCart={(e) => this.addProductOnCartHandler(e)}
-          />
-          <FoodItemCard
-            addProductOnCart={(e) => this.addProductOnCartHandler(e)}
-          />
-          <FoodItemCard
-            addProductOnCart={(e) => this.addProductOnCartHandler(e)}
-          />
-        </Carousel> */}
-        {/* ; */}
+            this.props.category.map((value, i) => {
+              return (
+                <div role="list" key={i} className="ui list">
+                  <div role="listitem" className="item">
+                    {value.name}
+                    {/* {this.props.showProductsByCategoryId(value._id)} */}
+                    {/* <Carousel responsive={responsive}>
+                    <FoodItemCard
+                    addProductOnCart={(e) => this.addProductOnCartHandler(e)}
+                    />
+                  </Carousel> */}
+                  </div>
+                </div>
+              );
+            })
+          }
+        </Container>
       </div>
     );
   }
 }
-
-export default Dashboard;
+const mapStateToProps = (state) => {
+  return {
+    category: state.category.category,
+    products: state.products.products,
+  };
+};
+export default connect(mapStateToProps, { showProductsByCategoryId })(
+  Dashboard
+);

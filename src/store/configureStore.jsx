@@ -4,17 +4,13 @@ import { reducer as formReducer } from "redux-form";
 
 //REDUCERS
 import loaderReducer from "./reducers/loader";
-// import boardsReducer from "./reducers/boards";
-// import classesReducer from "./reducers/classes";
-// import subjectsReducer from "./reducers/subjects";
-// import questionsReducer from "./reducers/questions";
+import productsReducer from "./reducers/products";
+import categoryReducer from "./reducers/category";
 
 const rootReducer = combineReducers({
   loader: loaderReducer,
-  // boards: boardsReducer,
-  // classes: classesReducer,
-  // subjects: subjectsReducer,
-  // questions: questionsReducer,
+  products: productsReducer,
+  category: categoryReducer,
   form: formReducer,
 });
 

@@ -1,20 +1,22 @@
-export const SIGN_IN = "SIGN_IN";
-export const SIGN_OUT = "SIGN_OUT";
+
 export const SHOW_LOADER = "SHOW_LOADER";
 export const HIDE_LOADER = "HIDE_LOADER";
 
 //APIs ACTION TYPES
+export const SIGN_IN = "SIGN_IN";
+export const SIGN_OUT = "SIGN_OUT";
 
-export const SHOW_BOARDS = "SHOW_BOARDS";
-export const ADD_BOARDS = "ADD_BOARDS";
+export const ADD_CATEGORY = "ADD_CATEGORY";
+export const SHOW_CATEGORY = "SHOW_CATEGORY";
+export const DELETE_CATEGORY = "DELETE_CATEGORY";
 
-export const SHOW_CLASSES = "SHOW_CLASSES";
-export const ADD_CLASSES = "ADD_CLASSES";
+export const ADD_ORDERS = "ADD_ORDERS";
+export const SHOW_ORDERS_USER_ID = "SHOW_ORDERS_USER_ID";
+export const SHOW_ORDERS = "SHOW_ORDERS";
+export const UPDATE_ORDER_STATUS = "UPDATE_ORDER_STATUS";
 
-export const SHOW_SUBJECTS = "SHOW_SUBJECTS";
-export const ADD_SUBJECT_LECTURES = "ADD_SUBJECT_LECTURES";
+export const ADD_PRODUCT = "ADD_PRODUCT";
+export const SHOW_PRODUCTS = "SHOW_PRODUCTS";
+export const SHOW_PRODUCTS_BY_CATEGORY_ID = "SHOW_PRODUCTS_BY_CATEGORY_ID";
+export const SHOW_PRODUCTS_BY_PRODUCT_ID = "SHOW_PRODUCTS_BY_PRODUCT_ID";
 
-
-export const SHOW_QUESTIONS = "SHOW_QUESTIONS";
-export const ADD_QUESTIONS = "ADD_QUESTIONS";
-export const DELETE_QUESTION = "DELETE_QUESTION";

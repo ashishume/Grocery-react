@@ -1,67 +1,53 @@
-import React, { Component } from "react";
+import React, {  Component } from "react";
 import "./Navbar.css";
-import { Menu, Button, Dropdown } from "semantic-ui-react";
+import { Menu, Dropdown } from "semantic-ui-react";
+import { showCategory } from "../../store/actions/category";
+import { connect } from "react-redux";
+import history from "../../history";
 
-const options = [
-  { key: 1, text: "Choice 1", value: 1 },
-  { key: 2, text: "Choice 2", value: 2 },
-  { key: 3, text: "Choice 3", value: 3 },
-];
 class Navbar extends Component {
-  state = {};
-
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
-
+  // const [counter, setCounter] = useState(0);
+  // useEffect(() => {
+  // }, [counter]);
+  componentDidMount() {
+    this.props.showCategory();
+  }
+  handleItemClick = (e, { name }) => {
+    console.log(name);
+    if (name === "category") history.push("/add-category");
+    else if (name === "product") history.push("/add-product");
+  };
   render() {
-    const { activeItem } = this.state;
     return (
       <Menu secondary>
-        <Dropdown text="Categories" pointing className="link item">
+        <Dropdown text="More" pointing className="link item">
           <Dropdown.Menu>
-            <Dropdown.Header>Categories</Dropdown.Header>
             <Dropdown.Item>
-              <Dropdown text="Clothing">
+              <Dropdown text="Categories">
                 <Dropdown.Menu>
-                  <Dropdown.Header>Mens</Dropdown.Header>
-                  <Dropdown.Item>Shirts</Dropdown.Item>
-                  <Dropdown.Item>Pants</Dropdown.Item>
-                  <Dropdown.Item>Jeans</Dropdown.Item>
-                  <Dropdown.Item>Shoes</Dropdown.Item>
-                  <Dropdown.Divider />
-                  <Dropdown.Header>Womens</Dropdown.Header>
-                  <Dropdown.Item>Dresses</Dropdown.Item>
-                  <Dropdown.Item>Shoes</Dropdown.Item>
-                  <Dropdown.Item>Bags</Dropdown.Item>
+                  {this.props.categories.map((value, i) => {
+                    return <Dropdown.Item key={i}>{value.name}</Dropdown.Item>;
+                  })}
                 </Dropdown.Menu>
               </Dropdown>
             </Dropdown.Item>
-            <Dropdown.Item>Home Goods</Dropdown.Item>
-            <Dropdown.Item>Bedroom</Dropdown.Item>
-            <Dropdown.Divider />
-            <Dropdown.Header>Order</Dropdown.Header>
-            <Dropdown.Item>Status</Dropdown.Item>
-            <Dropdown.Item>Cancellations</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
 
-        <Menu.Item
-          name="reviews"
-          active={activeItem === "reviews"}
-          onClick={this.handleItemClick}
-        >
-          Reviews
+        <Menu.Item name="product" onClick={this.handleItemClick}>
+          Add Product
         </Menu.Item>
 
-        <Menu.Item
-          name="upcomingEvents"
-          active={activeItem === "upcomingEvents"}
-          onClick={this.handleItemClick}
-        >
-          Upcoming Events
+        <Menu.Item name="category" onClick={this.handleItemClick}>
+          Add Category
         </Menu.Item>
       </Menu>
     );
   }
 }
-
-export default Navbar;
+const mapStateToProps = (state) => {
+  return {
+    categories: state.category.category,
+  };
+};
+export default connect(mapStateToProps, { showCategory })(Navbar);
