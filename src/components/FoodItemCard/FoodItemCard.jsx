@@ -1,36 +1,33 @@
 import React from "react";
-import { Card, Icon, Image, Button } from "semantic-ui-react";
+import {  Button, Label } from "semantic-ui-react";
 
 import "./FoodItemCard.css";
-const FoodItemCard = (props) => {
+const FoodItemCard = ({ content, addProductOnCart }) => {
+  const discountPercent = parseInt(
+    ((content.showPrice - content.originalPrice) / content.showPrice) * 100
+  );
+
   return (
-    <Card className="card">
-      <Image
-        src={props.url}
-        wrapped
-        ui={false}
-      />
-      <Card.Content>
-        <Card.Header>{props.name}</Card.Header>
-        <Card.Meta>
-  <strike>M.R.P ₹500</strike>
-        </Card.Meta>
-        <Card.Description>
-          <h3>
-            <strong>₹300</strong>
-          </h3>
-        </Card.Description>
-      </Card.Content>
-      <Card.Content extra>
-        <Button
-          color="green"
-          onClick={props.addProductOnCart}
-          style={{ width: "100%" }}
-        >
+    <div className="foodCard">
+      <Label as="a" size="large" color="red" horizontal>
+        {discountPercent}% off
+      </Label>
+      <div className="food-image-container">
+        <img className="foodItemImage" alt="food-card" src={content.image} />
+      </div>
+      <div className="title">{content.name}</div>
+      <div className="showPrice">
+        <strike>M.R.P. ₹{content.showPrice}</strike>
+      </div>
+      <div className="originalPrice">
+        <strong>₹{content.originalPrice}</strong>
+      </div>
+      <div className="addCart">
+        <Button fluid color="blue" onClick={addProductOnCart}>
           Add to cart
         </Button>
-      </Card.Content>
-    </Card>
+      </div>
+    </div>
   );
 };
 

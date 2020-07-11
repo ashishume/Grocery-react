@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { storage } from "../firebase";
 import { Input, Button, Message, FormGroup, Progress } from "semantic-ui-react";
 
-
-
 const ImageUpload = (props) => {
   const [image, setImage] = useState(null);
   const [percent, setPercent] = useState(0);

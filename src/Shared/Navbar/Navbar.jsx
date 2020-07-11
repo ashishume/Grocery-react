@@ -16,6 +16,7 @@ class Navbar extends Component {
     console.log(name);
     if (name === "category") history.push("/add-category");
     else if (name === "product") history.push("/add-product");
+    else if (name === "dashboard") history.push("/");
   };
   render() {
     return (
@@ -36,6 +37,9 @@ class Navbar extends Component {
 
         <Menu.Item name="product" onClick={this.handleItemClick}>
           Add Product
+        </Menu.Item>
+        <Menu.Item name="dashboard" onClick={this.handleItemClick}>
+          Dashboard
         </Menu.Item>
 
         <Menu.Item name="category" onClick={this.handleItemClick}>

@@ -39,7 +39,7 @@ class Product extends Component {
   render() {
     let categoryOptions = [];
     this.props.category.map((data, i) => {
-      categoryOptions.push({ key: i, value: data._id, text: data.name });
+      return categoryOptions.push({ key: i, value: data._id, text: data.name });
     });
 
     return (

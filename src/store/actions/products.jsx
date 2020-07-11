@@ -1,7 +1,7 @@
 import * as ActionType from "./actionTypes";
 import HttpService from "../../API/HttpService";
 import { API_NAME } from "../../API/ApiPaths";
-
+import { reset } from "redux-form";
 export const addProducts = (formValues) => async (dispatch) => {
   const response = await HttpService.post(API_NAME.PRODUCT, formValues);
 
@@ -9,7 +9,7 @@ export const addProducts = (formValues) => async (dispatch) => {
     type: ActionType.ADD_PRODUCT,
     payload: response.data,
   });
-
+ if (response.status === 200) dispatch(reset("ProductForm"));
 };
 export const showAllProducts = () => async (dispatch) => {
   const response = await HttpService.get(API_NAME.PRODUCT);

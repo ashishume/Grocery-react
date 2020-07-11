@@ -55,6 +55,7 @@ const ProductTable = ({ products, isSelected }) => {
               <Table.Cell>{items.description}</Table.Cell>
               <Table.Cell>
                 <img
+                  alt="categories"
                   src={items.image}
                   style={{ width: "200px", height: "200px" }}
                 />

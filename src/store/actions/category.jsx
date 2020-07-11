@@ -1,6 +1,7 @@
 import * as ActionType from "./actionTypes";
 import HttpService from "../../API/HttpService";
 import { API_NAME } from "../../API/ApiPaths";
+import { reset } from "redux-form";
 
 export const addCategory = (formValues) => async (dispatch) => {
   const response = await HttpService.post(API_NAME.CATEGORY, formValues);
@@ -10,6 +11,7 @@ export const addCategory = (formValues) => async (dispatch) => {
     payload: response.data,
   });
 
+  if (response.status === 200) dispatch(reset("CategoryForm"));
 };
 export const showCategory = () => async (dispatch) => {
   const response = await HttpService.get(API_NAME.CATEGORY);
@@ -26,5 +28,4 @@ export const archiveCategory = (id) => async (dispatch) => {
     type: ActionType.DELETE_CATEGORY,
     payload: response.data,
   });
-  
 };

@@ -16,7 +16,6 @@ class Category extends Component {
         ...e,
         imageUrl: image,
       };
-
       await this.props.addCategory(body);
       await this.props.showCategory();
     } else {
