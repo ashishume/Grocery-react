@@ -1,5 +1,13 @@
-.imageItem{
-    width: 100%;
-    height: 300px;
-    background-size: 100%;
+.imageItem {
+  width: 100%;
+  height: 300px;
+  background-size: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .imageItem {
+    width: 100vw;
+    height: 150px;
+    background-size: 90%;
+  }
 }

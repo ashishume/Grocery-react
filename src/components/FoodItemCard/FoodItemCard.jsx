@@ -71,7 +71,7 @@ const FoodItemCard = (props) => {
           src={props.content.image}
         />
       </div>
-      <div className="title">{props.content.name}</div>
+      <div className="food-title">{props.content.name}</div>
       <div className="showPrice">
         <strike>M.R.P. ₹{props.content.showPrice}</strike>
       </div>

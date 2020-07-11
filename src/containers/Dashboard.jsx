@@ -27,7 +27,7 @@ class Dashboard extends Component {
       <div>
         <AdminNavbar />
         <ImageCarousel onItemClickEvent={(e) => this.onItemClickEvent(e)} />
-        <Container>
+        <Container style={{margin:'0 auto',display:'block'}}>
           <h2 className="heading">
             Shop by categories <Icon name="shop" />
           </h2>
