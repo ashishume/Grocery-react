@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import FoodItemCard from "../components/FoodItemCard/FoodItemCard";
-import Navbar from "../Shared/Navbar/Navbar";
+// import Navbar from "../Shared/Navbar/Navbar";
 // import Carousel from "react-multi-carousel";
 // import ImageCarousel from "../components/ImageCarousel/ImageCarousel";
 // import ImageUpload from "./ImageUpload";
@@ -10,6 +10,7 @@ import { Icon, Container } from "semantic-ui-react";
 import { showProductsByCategoryId } from "../store/actions/products";
 import CategoryCard from "../components/CategoryCard/CategoryCard";
 import history from "../history";
+import AdminNavbar from "../Shared/AdminNavbar/AdminNavbar";
 // const responsive = {
 //   superLargeDesktop: {
 //     breakpoint: { max: 4000, min: 3000 },
@@ -44,7 +45,8 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+        {/* <Navbar /> */}
+        <AdminNavbar/>
         {/* <ImageCarousel onItemClickEvent={(e) => this.onItemClickEvent(e)} /> */}
         <Container>
           <h2 style={{ fontSize: "30px", marginTop: "20px", fontWeight: 700 }}>

@@ -7,7 +7,8 @@ import {
   addCategory,
   archiveCategory,
 } from "../store/actions/category";
-import Navbar from "../Shared/Navbar/Navbar";
+import AdminNavbar from "../Shared/AdminNavbar/AdminNavbar";
+// import Navbar from "../Shared/Navbar/Navbar";
 
 class Category extends Component {
   submitCategoryHandler = async (e, image) => {
@@ -33,7 +34,8 @@ class Category extends Component {
   render() {
     return (
       <Fragment>
-        <Navbar />
+        {/* <Navbar /> */}
+        <AdminNavbar/>
         <Container style={{ marginTop: "20px" }}>
           <Grid columns={2}>
             <h2>Category Configurations</h2>

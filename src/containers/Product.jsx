@@ -8,7 +8,8 @@ import {
   addProducts,
 } from "../store/actions/products";
 import ProductTable from "../components/ProductTable/ProductTable";
-import Navbar from "../Shared/Navbar/Navbar";
+// import Navbar from "../Shared/Navbar/Navbar";
+import AdminNavbar from "../Shared/AdminNavbar/AdminNavbar";
 class Product extends Component {
   submitProductHandler = (e, imageValue) => {
     if (imageValue !== "") {
@@ -44,7 +45,8 @@ class Product extends Component {
 
     return (
       <Fragment>
-        <Navbar />
+        {/* <Navbar /> */}
+        <AdminNavbar/>
         <Container>
           <Grid columns={16}>
             <Grid.Row>
