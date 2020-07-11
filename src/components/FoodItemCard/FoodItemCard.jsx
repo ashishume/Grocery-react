@@ -10,15 +10,19 @@ const FoodItemCard = (props) => {
   );
 
   const [isVisible, setVisible] = useState(true);
+  const [qty, setQty] = useState(0);
   useEffect(() => {
     const fetchStorageData = () => {
-      setVisible(true)
+      setVisible(true);
       const localData = localStorage.getItem("cartItems");
-      if (localData!==null) {
+      if (localData !== null) {
         const tempArray = JSON.parse(localData);
         if (tempArray) {
           tempArray.map((value) => {
-            if (value._id == props.content._id) setVisible(false);
+            if (value._id == props.content._id) {
+              setVisible(false);
+              setQty(value.quantity);
+            }
           });
         }
       }
@@ -29,6 +33,11 @@ const FoodItemCard = (props) => {
   const clickAddToCartHandler = () => {
     props.addProductOnCart();
     setVisible(false);
+  };
+
+  const changeQuantityHandler = (data) => {
+    props.onChooseItemQuantity(data);
+    setQty(data.value);
   };
 
   const getOptions = (number, prefix = "Choice ") =>
@@ -69,7 +78,8 @@ const FoodItemCard = (props) => {
           <Dropdown
             placeholder="Qty"
             compact
-            onChange={(e, data) => props.onChooseItemQuantity(data)}
+            value={qty}
+            onChange={(e, data) => changeQuantityHandler(data)}
             selection
             options={getOptions(10, "")}
           />

@@ -31,22 +31,22 @@ import AdminNavbar from "../Shared/AdminNavbar/AdminNavbar";
 // };
 class Dashboard extends Component {
   addProductOnCartHandler = (e) => {
-    console.log("click");
+    // console.log("click");
   };
 
   routeToCategoryHandler = (value) => {
-    console.log(value);
+    // console.log(value);
     history.push(`/category/${value._id}`);
   };
 
   onItemClickEvent = (e) => {
-    console.log(e);
+    // console.log(e);
   };
   render() {
     return (
       <div>
         {/* <Navbar /> */}
-        <AdminNavbar/>
+        <AdminNavbar />
         {/* <ImageCarousel onItemClickEvent={(e) => this.onItemClickEvent(e)} /> */}
         <Container>
           <h2 style={{ fontSize: "30px", marginTop: "20px", fontWeight: 700 }}>

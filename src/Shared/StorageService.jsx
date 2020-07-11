@@ -16,21 +16,19 @@ export const AddToCartStorageService = (item) => {
 
   return renderData(item);
 };
-export const QuantityStorageService = (item) => {
-  let array = [];
-  const renderData = (item) => {
-    item.quantity = 0;
+export const QuantityStorageService = (qty, item) => {
+  const renderData = (qty, item) => {
     const getItem = localStorage.getItem("cartItems");
     if (getItem !== null) {
       const tempArray = JSON.parse(getItem);
-      tempArray.push(item);
+      tempArray.map((value) => {
+        if (value._id === item._id) value.quantity = qty;
+      });
+
       const data = JSON.stringify(tempArray);
       localStorage.setItem("cartItems", data);
-    } else {
-      array.push(item);
-      localStorage.setItem("cartItems", JSON.stringify(array));
     }
   };
 
-  return renderData(item);
+  return renderData(qty, item);
 };

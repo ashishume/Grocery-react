@@ -8,6 +8,8 @@ import {
   AddToCartStorageService,
   QuantityStorageService,
 } from "../Shared/StorageService";
+import { Message, Container, Button } from "semantic-ui-react";
+import history from "../history";
 
 class ShowProductsList extends Component {
   componentDidMount() {
@@ -18,8 +20,8 @@ class ShowProductsList extends Component {
     AddToCartStorageService(value);
   };
 
-  onChooseItemQuantity = (e) => {
-    console.log(e.value);
+  onChooseItemQuantity = (qty, value) => {
+    QuantityStorageService(qty.value, value);
   };
 
   render() {
@@ -27,16 +29,25 @@ class ShowProductsList extends Component {
       <Fragment>
         {/* <Navbar /> */}
         <AdminNavbar />
-        {this.props.products.map((value, i) => {
-          return (
-            <FoodItemCard
-              onChooseItemQuantity={(e) => this.onChooseItemQuantity(e)}
-              key={i}
-              content={value}
-              addProductOnCart={() => this.addProductOnCart(value)}
-            />
-          );
-        })}
+        {this.props.products.length ? (
+          this.props.products.map((value, i) => {
+            return (
+              <FoodItemCard
+                onChooseItemQuantity={(e) =>
+                  this.onChooseItemQuantity(e, value)
+                }
+                key={i}
+                content={value}
+                addProductOnCart={() => this.addProductOnCart(value)}
+              />
+            );
+          })
+        ) : (
+          <Container textAlign="center">
+            <Message>No products found</Message>
+            <Button onClick={()=>history.push('/')}>Go back</Button>
+          </Container>
+        )}
       </Fragment>
     );
   }
