@@ -32,3 +32,16 @@ export const QuantityStorageService = (qty, item) => {
 
   return renderData(qty, item);
 };
+export const RemoveFromCartService = (item) => {
+  const renderData = (item) => {
+    const getItem = localStorage.getItem("cartItems");
+    if (getItem !== null) {
+      const tempArray = JSON.parse(getItem);
+      let filterItems = tempArray.filter((value) => value._id !== item._id);
+      const data = JSON.stringify(filterItems);
+      localStorage.setItem("cartItems", data);
+    }
+  };
+
+  return renderData(item);
+};

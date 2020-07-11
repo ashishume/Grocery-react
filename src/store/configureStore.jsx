@@ -6,11 +6,13 @@ import { reducer as formReducer } from "redux-form";
 import loaderReducer from "./reducers/loader";
 import productsReducer from "./reducers/products";
 import categoryReducer from "./reducers/category";
+import imagesReducer from "./reducers/images";
 
 const rootReducer = combineReducers({
   loader: loaderReducer,
   products: productsReducer,
   category: categoryReducer,
+  images: imagesReducer,
   form: formReducer,
 });
 

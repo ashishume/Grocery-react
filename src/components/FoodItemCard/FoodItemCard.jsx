@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Button, Label, Select, Dropdown } from "semantic-ui-react";
+import {
+  Button,
+  Label,
+  Icon,
+  Select,
+  Dropdown,
+  Popup,
+} from "semantic-ui-react";
 import _ from "lodash";
 import "./FoodItemCard.css";
 const FoodItemCard = (props) => {
@@ -47,6 +54,11 @@ const FoodItemCard = (props) => {
       value: index,
     }));
 
+  const removeItemFromCart = () => {
+    props.removeFromCartHandler();
+    setVisible(true);
+  };
+
   return (
     <div className="foodCard">
       <Label as="a" size="large" color="red" horizontal>
@@ -69,7 +81,7 @@ const FoodItemCard = (props) => {
       {isVisible ? (
         <div className="addCart">
           <Button fluid color="blue" onClick={() => clickAddToCartHandler()}>
-            Add to cart
+            <Icon name="add to cart" /> Add to cart
           </Button>
         </div>
       ) : null}
@@ -82,6 +94,16 @@ const FoodItemCard = (props) => {
             onChange={(e, data) => changeQuantityHandler(data)}
             selection
             options={getOptions(10, "")}
+          />
+          <Popup
+            content="Remove from cart"
+            trigger={
+              <Button
+                color="red"
+                icon="trash alternate outline"
+                onClick={() => removeItemFromCart()}
+              />
+            }
           />
         </div>
       ) : null}

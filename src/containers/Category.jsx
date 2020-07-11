@@ -60,7 +60,7 @@ class Category extends Component {
                               content="Delete category"
                               trigger={
                                 <Icon
-                                  name="archive"
+                                  name="trash"
                                   onClick={() => this.archiveCategory(value)}
                                 />
                               }

@@ -12,7 +12,7 @@ const productsReducer = (state = initialState, action) => {
         ...state,
         productsResponse: action.payload,
       };
-    case ActionTypes.SHOW_PRODUCTS:
+    case ActionTypes.SHOW_LATEST_PRODUCTS:
       return {
         ...state,
         products: action.payload,

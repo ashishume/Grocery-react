@@ -3,4 +3,5 @@ export const API_NAME = {
   CATEGORY: "category/",
   PRODUCT: "product/",
   ORDERS: "orders/",
+  IMAGES: "images/",
 };

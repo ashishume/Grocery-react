@@ -5,15 +5,6 @@ import history from "../../history";
 import "./AdminNavbar.css";
 import { Menu, Dropdown } from "semantic-ui-react";
 class AdminNavbar extends Component {
-  // myFunction = () => {
-  //   var x = document.getElementById("myTopnav");
-  //   if (x.className === "topnav") {
-  //     x.className += " responsive";
-  //   } else {
-  //     x.className = "topnav";
-  //   }
-  // };
-
   componentDidMount() {
     this.props.showCategory();
   }
@@ -22,6 +13,7 @@ class AdminNavbar extends Component {
     if (name === "category") history.push("/add-category");
     else if (name === "product") history.push("/add-product");
     else if (name === "dashboard") history.push("/");
+    else if (name === "add-link") history.push("/add-image-link");
   };
   render() {
     return (
@@ -49,6 +41,9 @@ class AdminNavbar extends Component {
 
         <Menu.Item name="category" onClick={this.handleItemClick}>
           Add Category
+        </Menu.Item>
+        <Menu.Item name="add-link" onClick={this.handleItemClick}>
+          Add Link
         </Menu.Item>
       </Menu>
     );

@@ -7,6 +7,7 @@ import AdminNavbar from "../Shared/AdminNavbar/AdminNavbar";
 import {
   AddToCartStorageService,
   QuantityStorageService,
+  RemoveFromCartService,
 } from "../Shared/StorageService";
 import { Message, Container, Button } from "semantic-ui-react";
 import history from "../history";
@@ -24,30 +25,38 @@ class ShowProductsList extends Component {
     QuantityStorageService(qty.value, value);
   };
 
+  removeFromCartHandler = (value) => {
+    RemoveFromCartService(value)
+  };
   render() {
     return (
       <Fragment>
         {/* <Navbar /> */}
         <AdminNavbar />
-        {this.props.products.length ? (
-          this.props.products.map((value, i) => {
-            return (
-              <FoodItemCard
-                onChooseItemQuantity={(e) =>
-                  this.onChooseItemQuantity(e, value)
-                }
-                key={i}
-                content={value}
-                addProductOnCart={() => this.addProductOnCart(value)}
-              />
-            );
-          })
-        ) : (
-          <Container textAlign="center">
-            <Message>No products found</Message>
-            <Button onClick={()=>history.push('/')}>Go back</Button>
-          </Container>
-        )}
+        <Container>
+          {this.props.products.length ? (
+            this.props.products.map((value, i) => {
+              return (
+                <FoodItemCard
+                  onChooseItemQuantity={(e) =>
+                    this.onChooseItemQuantity(e, value)
+                  }
+                  key={i}
+                  content={value}
+                  removeFromCartHandler={() =>
+                    this.removeFromCartHandler(value)
+                  }
+                  addProductOnCart={() => this.addProductOnCart(value)}
+                />
+              );
+            })
+          ) : (
+            <Container textAlign="center">
+              <Message>No products found</Message>
+              <Button onClick={() => history.push("/")}>Go back</Button>
+            </Container>
+          )}
+        </Container>
       </Fragment>
     );
   }

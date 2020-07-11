@@ -9,13 +9,13 @@ export const addProducts = (formValues) => async (dispatch) => {
     type: ActionType.ADD_PRODUCT,
     payload: response.data,
   });
- if (response.status === 200) dispatch(reset("ProductForm"));
+  if (response.status === 200) dispatch(reset("ProductForm"));
 };
-export const showAllProducts = () => async (dispatch) => {
-  const response = await HttpService.get(API_NAME.PRODUCT);
+export const showAllLatestProducts = () => async (dispatch) => {
+  const response = await HttpService.get(API_NAME.PRODUCT + "/" + "latest");
 
   dispatch({
-    type: ActionType.SHOW_PRODUCTS,
+    type: ActionType.SHOW_LATEST_PRODUCTS,
     payload: response.data,
   });
 };
@@ -26,7 +26,6 @@ export const showProductsByCategoryId = (params) => async (dispatch) => {
     type: ActionType.SHOW_PRODUCTS_BY_CATEGORY_ID,
     payload: response.data,
   });
-  
 };
 export const showProductsById = (params) => async (dispatch) => {
   const response = await HttpService.get(
