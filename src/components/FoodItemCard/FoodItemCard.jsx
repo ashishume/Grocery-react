@@ -48,8 +48,6 @@ const FoodItemCard = (props) => {
   };
 
   const getOptions = (number, prefix = "Choice ") => {
-    console.log(number);
-    
     return _.times(number, (index) => ({
       key: index,
       text: `${prefix}${index}`,
@@ -61,6 +59,9 @@ const FoodItemCard = (props) => {
     props.removeFromCartHandler();
     setVisible(true);
   };
+  let name = props.content.name.substring(0, 55);
+  if (props.content.name.length > 55)
+     name = props.content.name.substring(0, 55) + "...";
 
   return (
     <div className="foodCard">
@@ -74,7 +75,7 @@ const FoodItemCard = (props) => {
           src={props.content.image}
         />
       </div>
-      <div className="food-title">{props.content.name}</div>
+  <div className="food-title">{name}</div>
       <div className="showPrice">
         <strike>M.R.P. ₹{props.content.showPrice}</strike>
       </div>

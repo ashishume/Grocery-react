@@ -49,11 +49,15 @@ const Cart = (props) => {
               <p>Order summary</p>
               <Divider />
               {props.cartInfo.map((value, i) => {
+                let name = value.name.substring(0, 20);
+                if (value.name.length > 20)
+                  name = value.name.substring(0, 20) + "...";
+
                 return (
                   <div key={i} className="cart-item">
                     <div className="product-name">
                       <img className="cart-image" src={value.image} />
-                      <span className="product-text">{value.name}</span>
+                      <span className="product-text">{name}</span>
                       <div className="item-price">
                         ₹ {value.originalPrice * value.quantity}
                       </div>

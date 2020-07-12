@@ -16,7 +16,7 @@
 }
 
 .product-name {
-  font-size: 20px;
+  font-size: 13px;
   font-weight: 500;
   font-weight: 900;
 }
@@ -47,13 +47,15 @@
   width: 100px;
   height: 100px;
 }
- .dropdown {
-    font-size: 11px;
-  }
+.dropdown {
+  font-size: 11px;
+}
 
 @media screen and (max-width: 768px) {
   .product-text {
-    font-size: 14px;
+    font-size: 12px;
+    height: 20px;
+    word-wrap: break-word;
   }
   .title-header {
     font-size: 16px;
@@ -69,10 +71,10 @@
   .popup-remove {
     font-size: 12px;
   }
-  .show-price{
+  .show-price {
     font-size: 10px;
   }
-  .item-price{
+  .item-price {
     font-size: 15px;
   }
 }

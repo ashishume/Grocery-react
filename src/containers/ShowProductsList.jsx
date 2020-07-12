@@ -31,7 +31,6 @@ class ShowProductsList extends Component {
   render() {
     return (
       <Fragment>
-        {/* <Navbar /> */}
         <AdminNavbar />
         <Container>
           {this.props.products.length ? (
@@ -64,7 +63,7 @@ class ShowProductsList extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    products: state.products.products,
+    products: state.products.categoryProducts,
   };
 };
 export default connect(mapStateToProps, { showProductsByCategoryId })(
