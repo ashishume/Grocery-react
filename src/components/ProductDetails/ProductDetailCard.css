@@ -1,0 +1,29 @@
+.container {
+  margin-top: 20px;
+}
+.product-image-container {
+  text-align: center;
+  box-shadow: 1px 2px 3px 2px lightgray;
+}
+.product-image {
+  width: 250px;
+  height: 250px;
+  margin: 30px;
+}
+
+.display-item-name {
+  height: 70px;
+  font-size: 20px;
+  font-weight: 500;
+  /* background-color: red; */
+}
+
+.showPrice {
+  font-size: 20px;
+  color: gray;
+}
+.originalPrice {
+  font-size: 25px;
+  color: #000;
+  font-weight: 800;
+}

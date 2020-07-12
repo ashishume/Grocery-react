@@ -29,11 +29,12 @@ export const showProductsByCategoryId = (params) => async (dispatch) => {
 };
 export const showProductsById = (params) => async (dispatch) => {
   const response = await HttpService.get(
-    API_NAME.PRODUCT + "/oneProduct" + params
+    API_NAME.PRODUCT + "oneProduct/" + params
   );
 
   dispatch({
     type: ActionType.SHOW_PRODUCTS_BY_PRODUCT_ID,
     payload: response.data,
   });
+
 };

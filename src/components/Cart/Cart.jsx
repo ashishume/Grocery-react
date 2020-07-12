@@ -1,24 +1,10 @@
 import React, { Fragment } from "react";
 import "./Cart.css";
-import {
-  Dropdown,
-  Button,
-  Grid,
-  Popup,
-  Divider,
-  Message,
-} from "semantic-ui-react";
-import _ from "lodash";
+import { Button, Popup, Divider, Message } from "semantic-ui-react";
 import CheckOutCalculation from "../PaymentCalculation/CheckOutCalculation";
 import history from "../../history";
+import QuantityDropdown from "../QuantityDropdown";
 const Cart = (props) => {
-  const getOptions = (number, prefix = "Choice ") =>
-    _.times(number, (index) => ({
-      key: index,
-      text: `${prefix}${index}`,
-      value: index,
-    }));
-
   if (props.cartInfo.length == 0) {
     return (
       <div className="container">
@@ -69,16 +55,11 @@ const Cart = (props) => {
                     </div>
 
                     <div className="change-quantity">
-                      <Dropdown
-                        placeholder="Qty"
-                        compact
-                        className="dropdown"
-                        value={value.quantity}
-                        onChange={(e, data) =>
+                      <QuantityDropdown
+                        qty={value.quantity}
+                        changeQuantityHandler={(data) =>
                           props.changeQuantityHandler(data, value)
                         }
-                        selection
-                        options={getOptions(10, "")}
                       />
                       <Popup
                         content="Remove from cart"

@@ -3,12 +3,11 @@ import {
   Button,
   Label,
   Icon,
-  Select,
-  Dropdown,
   Popup,
 } from "semantic-ui-react";
-import _ from "lodash";
 import "./FoodItemCard.css";
+import history from "../../history";
+import QuantityDropdown from "../QuantityDropdown";
 const FoodItemCard = (props) => {
   const discountPercent = parseInt(
     ((props.content.showPrice - props.content.originalPrice) /
@@ -37,34 +36,33 @@ const FoodItemCard = (props) => {
     fetchStorageData();
   });
 
-  const clickAddToCartHandler = () => {
+  const onClickOfFoodItemHandler = (e) => {
+    history.push(`/grocery/${props.content._id}`);
+    e.stopPropagation();
+  };
+
+  const clickAddToCartHandler = (e) => {
+    e.stopPropagation();
     props.addProductOnCart();
     setVisible(false);
   };
 
+  const removeItemFromCart = (e) => {
+    e.stopPropagation();
+    props.removeFromCartHandler();
+    setVisible(true);
+  };
   const changeQuantityHandler = (data) => {
     props.onChooseItemQuantity(data);
     setQty(data.value);
   };
 
-  const getOptions = (number, prefix = "Choice ") => {
-    return _.times(number, (index) => ({
-      key: index,
-      text: `${prefix}${index}`,
-      value: index,
-    }));
-  };
-
-  const removeItemFromCart = () => {
-    props.removeFromCartHandler();
-    setVisible(true);
-  };
   let name = props.content.name.substring(0, 55);
   if (props.content.name.length > 55)
-     name = props.content.name.substring(0, 55) + "...";
+    name = props.content.name.substring(0, 55) + "...";
 
   return (
-    <div className="foodCard">
+    <div className="foodCard" onClick={(e) => onClickOfFoodItemHandler(e)}>
       <Label as="a" size="large" color="red" horizontal>
         {discountPercent}% off
       </Label>
@@ -75,7 +73,7 @@ const FoodItemCard = (props) => {
           src={props.content.image}
         />
       </div>
-  <div className="food-title">{name}</div>
+      <div className="food-title">{name}</div>
       <div className="showPrice">
         <strike>M.R.P. ₹{props.content.showPrice}</strike>
       </div>
@@ -84,21 +82,16 @@ const FoodItemCard = (props) => {
       </div>
       {isVisible ? (
         <div className="addCart">
-          <Button fluid color="blue" onClick={() => clickAddToCartHandler()}>
+          <Button fluid color="blue" onClick={(e) => clickAddToCartHandler(e)}>
             <Icon name="add to cart" /> Add to cart
           </Button>
         </div>
       ) : null}
       {!isVisible ? (
         <div className="quantity-container">
-          {console.log(qty)}
-          <Dropdown
-            placeholder="Qty"
-            compact
-            value={qty}
-            onChange={(e, data) => changeQuantityHandler(data)}
-            selection
-            options={getOptions(10, "")}
+          <QuantityDropdown
+            qty={qty}
+            changeQuantityHandler={(data) => changeQuantityHandler(data)}
           />
           <Popup
             content="Remove from cart"
@@ -106,7 +99,7 @@ const FoodItemCard = (props) => {
               <Button
                 color="red"
                 icon="trash alternate outline"
-                onClick={() => removeItemFromCart()}
+                onClick={(e) => removeItemFromCart(e)}
               />
             }
           />
