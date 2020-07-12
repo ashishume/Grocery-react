@@ -5,6 +5,7 @@ const Dashboard = React.lazy(() => import("../containers/Dashboard"));
 const Category = React.lazy(() => import("../containers/Category"));
 const Product = React.lazy(() => import("../containers/Product"));
 const ImageLinksTable = React.lazy(() => import("../components/ImageLinksTable/ImageLinksTable"));
+const CheckoutCart = React.lazy(() => import("../containers/CheckoutCart"));
 const ShowAllProductsList = React.lazy(() =>
   import("../containers/ShowProductsList")
 );
@@ -19,6 +20,7 @@ class MainNavigation extends Component {
             <Route path="/add-category" exact component={Category} />
             <Route path="/add-product" exact component={Product} />
             <Route path="/add-image-link" exact component={ImageLinksTable} />
+            <Route path="/checkout/cart" exact component={CheckoutCart} />
             <Route
               path="/category/:id"
               exact

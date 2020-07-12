@@ -49,9 +49,9 @@ const FoodItemCard = (props) => {
 
   const getOptions = (number, prefix = "Choice ") =>
     _.times(number, (index) => ({
-      key: index,
-      text: `${prefix}${index}`,
-      value: index,
+      key: index+1,
+      text: `${prefix}${index+1}`,
+      value: index+1,
     }));
 
   const removeItemFromCart = () => {

@@ -45,3 +45,15 @@ export const RemoveFromCartService = (item) => {
 
   return renderData(item);
 };
+export const GetAllStorageData = () => {
+  const renderData = () => {
+    const getItem = localStorage.getItem("cartItems");
+    if (getItem !== null) {
+      const tempArray = JSON.parse(getItem);
+      return tempArray;
+    }
+    return []
+  };
+
+  return renderData();
+};

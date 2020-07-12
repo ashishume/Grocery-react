@@ -8,12 +8,13 @@ class AdminNavbar extends Component {
   componentDidMount() {
     this.props.showCategory();
   }
-  handleItemClick = (e, { name }) => {
+  handleItemClick = (name) => {
     console.log(name);
     if (name === "category") history.push("/add-category");
     else if (name === "product") history.push("/add-product");
     else if (name === "dashboard") history.push("/");
     else if (name === "add-link") history.push("/add-image-link");
+    else if (name === "cart") history.push("/checkout/cart");
   };
 
   toggleNavbar = () => {
@@ -34,13 +35,27 @@ class AdminNavbar extends Component {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span
-            className="navbar-toggler-icon"
-          ></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav">
-            <li className="nav-item active">
+            <li
+              onClick={() => this.handleItemClick("dashboard")}
+              className="nav-item active"
+            >
+              <a className="nav-link">
+                Home
+              </a>
+            </li>
+            <li
+              onClick={() => this.handleItemClick("cart")}
+              className="nav-item active"
+            >
+              <a className="nav-link">
+                Cart
+              </a>
+            </li>
+            {/* <li className="nav-item active">
               <a className="nav-link" href="#">
                 Home <span className="sr-only">(current)</span>
               </a>
@@ -81,7 +96,7 @@ class AdminNavbar extends Component {
                   Something else here
                 </a>
               </div>
-            </li>
+            </li> */}
           </ul>
         </div>
       </nav>
