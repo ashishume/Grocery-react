@@ -28,6 +28,11 @@ const productsReducer = (state = initialState, action) => {
         ...state,
         products: action.payload,
       };
+    case ActionTypes.UPDATE_PRODUCT:
+      return {
+        ...state,
+        productsResponse: action.payload,
+      };
     default:
       return state;
   }

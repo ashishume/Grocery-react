@@ -6,11 +6,17 @@ import {
   showCategory,
   addCategory,
   archiveCategory,
+  updateCategory,
 } from "../store/actions/category";
 import AdminNavbar from "../Shared/AdminNavbar/AdminNavbar";
+import CategoryEditModal from "../Shared/Modals/CategoryEditModal";
 // import Navbar from "../Shared/Navbar/Navbar";
-
 class Category extends Component {
+  state = {
+    toggleCategoryModal: false,
+    editData: [],
+  };
+
   submitCategoryHandler = async (e, image) => {
     if (image !== "") {
       const body = {
@@ -28,20 +34,32 @@ class Category extends Component {
     await this.props.archiveCategory(e._id);
     await this.props.showCategory();
   };
-  // componentDidMount() {
-  //   // this.props.showCategory();
-  // }
+  editCategory = (value) => {
+    this.setState({
+      toggleCategoryModal: true,
+    });
+
+    this.setState({
+      editData: value,
+    });
+  };
+
+  submitEditCategoryHandler = async (id, data) => {
+    await this.props.updateCategory(id, data);
+    await this.props.showCategory();
+  };
   render() {
     return (
       <Fragment>
         {/* <Navbar /> */}
-        <AdminNavbar/>
+        <AdminNavbar />
         <Container style={{ marginTop: "20px" }}>
           <Grid columns={2}>
             <h2>Category Configurations</h2>
             <Grid.Row>
               <Grid.Column width={8}>
                 <CategoryForm
+                  isImage={true}
                   submitCategoryHandler={(e, image) =>
                     this.submitCategoryHandler(e, image)
                   }
@@ -65,12 +83,33 @@ class Category extends Component {
                                 />
                               }
                             />
+                            <Popup
+                              content="Delete category"
+                              trigger={
+                                <Icon
+                                  name="edit"
+                                  onClick={() => this.editCategory(value)}
+                                />
+                              }
+                            />
                           </List.Content>
                         </List.Item>
                       </Fragment>
                     );
                   })}
                 </List>
+                {this.state.toggleCategoryModal ? (
+                  <CategoryEditModal
+                    submitEditCategoryHandler={(id, data) =>
+                      this.submitEditCategoryHandler(id, data)
+                    }
+                    content={this.state.editData}
+                    closeModal={() =>
+                      this.setState({ toggleCategoryModal: false })
+                    }
+                    toggleCategoryModal={this.state.toggleCategoryModal}
+                  />
+                ) : null}
               </Grid.Column>
             </Grid.Row>
           </Grid>
@@ -86,6 +125,7 @@ const mapStateToProps = (state) => {
 };
 export default connect(mapStateToProps, {
   archiveCategory,
+  updateCategory,
   addCategory,
   showCategory,
 })(Category);

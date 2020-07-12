@@ -29,3 +29,14 @@ export const archiveCategory = (id) => async (dispatch) => {
     payload: response.data,
   });
 };
+export const updateCategory = (id, formValues) => async (dispatch) => {
+  const response = await HttpService.put(
+    API_NAME.CATEGORY + "/" + id,
+    formValues
+  );
+
+  dispatch({
+    type: ActionType.UPDATE_CATEGORY,
+    payload: response.data,
+  });
+};

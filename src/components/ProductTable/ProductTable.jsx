@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
-import { Table, Message } from "semantic-ui-react";
+import { Table, Message, Icon } from "semantic-ui-react";
 
-const ProductTable = ({ products, isSelected }) => {
+const ProductTable = ({ products, isSelected, onClickEditButton }) => {
   let headers = [];
   if (products.length) {
     headers = Object.keys(products[0]);
@@ -37,10 +37,12 @@ const ProductTable = ({ products, isSelected }) => {
               <Fragment key={i}>
                 {data !== "_id" && data !== "categoryId" ? (
                   <Table.HeaderCell>{convertCase(data)}</Table.HeaderCell>
-                ) : null}
+                  ) : null}
+
               </Fragment>
             );
           })}
+          <Table.HeaderCell>Edit</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
 
@@ -59,6 +61,12 @@ const ProductTable = ({ products, isSelected }) => {
                   src={items.image}
                   style={{ width: "200px", height: "200px" }}
                 />
+              </Table.Cell>
+              <Table.Cell>
+                {new Date(items.createdAt).toLocaleDateString()}
+              </Table.Cell>
+              <Table.Cell>
+                {<Icon name="edit" onClick={()=>onClickEditButton(items)} />}
               </Table.Cell>
             </Table.Row>
           );

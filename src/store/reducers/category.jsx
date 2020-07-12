@@ -17,6 +17,11 @@ const categoryReducer = (state = initialState, action) => {
         ...state,
         category: action.payload,
       };
+    case ActionTypes.UPDATE_CATEGORY:
+      return {
+        ...state,
+        categoryResponse: action.payload,
+      };
     case ActionTypes.DELETE_CATEGORY:
       return {
         ...state,

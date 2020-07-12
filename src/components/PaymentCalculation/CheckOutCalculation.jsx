@@ -6,7 +6,6 @@ const CheckOutCalculation = ({ paymentInfo }) => {
   let originalPrice = 0;
   const renderPaymentData = () => {
     paymentInfo.map((info) => {
-      console.log(info);
       showPrice += info.showPrice * info.quantity;
       originalPrice += info.originalPrice * info.quantity;
     });

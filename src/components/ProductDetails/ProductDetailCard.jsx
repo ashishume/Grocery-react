@@ -2,7 +2,7 @@ import React, { useState, Fragment, useEffect } from "react";
 import "./ProductDetailCard.css";
 import QuantityDropdown from "../QuantityDropdown";
 import { Button, Icon, Popup } from "semantic-ui-react";
-
+import history from "../../history";
 const ProductDetailCard = ({
   content,
   addProductOnCart,
@@ -53,14 +53,16 @@ const ProductDetailCard = ({
               </div>
             </div>
             <div className="col-sm-6">
-              <h3 className="display-item-name">{content.name}</h3>
+              <h3 className="display-item-name">
+                {content.name.substring(0, 76)}
+              </h3>
 
-              <div className="showPrice">
+              <div className="product-showPrice">
                 <p>
                   <strike>M.R.P. ₹ {content.showPrice}</strike>
                 </p>
               </div>
-              <div className="originalPrice">
+              <div className="product-originalPrice">
                 <p>Price ₹{content.originalPrice}</p>
               </div>
               <div className="itemQuantity">
@@ -70,16 +72,25 @@ const ProductDetailCard = ({
                       qty={qty}
                       changeQuantityHandler={(data) => changeQuantity(data)}
                     />
+                    &nbsp; &nbsp; &nbsp;
                     <Popup
                       content="Remove from cart"
                       trigger={
                         <Button
+                          size="big"
                           color="red"
                           icon="trash alternate outline"
                           onClick={(e) => removeItemFromCart(e)}
                         />
                       }
                     />
+                    <Button
+                      size="big"
+                      color="teal"
+                      onClick={() => history.push("/checkout/cart")}
+                    >
+                      <Icon name="add to cart" /> Go to cart
+                    </Button>
                   </Fragment>
                 ) : null}
               </div>
@@ -87,6 +98,7 @@ const ProductDetailCard = ({
                 {isVisible ? (
                   <div className="addCart">
                     <Button
+                      size="big"
                       fluid
                       color="blue"
                       onClick={(e) => clickAddToCartHandler(e)}
@@ -96,6 +108,10 @@ const ProductDetailCard = ({
                   </div>
                 ) : null}
               </div>
+
+              <p className="product-description">
+                <strong>Product Description:</strong> {content.description}
+              </p>
             </div>
           </div>
         </div>

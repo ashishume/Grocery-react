@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,Fragment } from "react";
 import "./CategoryForm.css";
 import { Form, Button } from "semantic-ui-react";
 import RenderField from "../../Shared/RenderField";
@@ -17,11 +17,15 @@ const CategoryForm = (props) => {
       )}
     >
       <Field name="name" component={RenderField} label="Category Name" />
-      <label>
-        <strong> Image Upload</strong>
-      </label>
-      <ImageUpload name="image" UploadedUrl={(e) => handleUploadedUrl(e)} />
-      <Button color="blue">Add Category</Button>
+      {props.isImage ? (
+        <Fragment>
+          <label>
+            <strong> Image Upload</strong>
+          </label>
+          <ImageUpload name="image" UploadedUrl={(e) => handleUploadedUrl(e)} />
+        </Fragment>
+      ) : null}
+      <Button color="blue">Submit</Button>
     </Form>
   );
 };

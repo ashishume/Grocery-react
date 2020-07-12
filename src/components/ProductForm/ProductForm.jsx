@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import "./ProductForm.css";
 import { Form, Button, FormGroup } from "semantic-ui-react";
 import RenderField from "../../Shared/RenderField";
@@ -40,40 +40,45 @@ const ProductForm = (props) => {
       </FormGroup>
 
       <Field name="description" component={RenderField} label="Description*" />
+      {props.isEditableRequired ? (
+        <Fragment>
+          <label>
+            <strong> Image Upload</strong>
+          </label>
+          <ImageUpload name="image" UploadedUrl={(e) => handleUploadedUrl(e)} />
 
-      <label>
-        <strong> Image Upload</strong>
-      </label>
-      <ImageUpload name="image" UploadedUrl={(e) => handleUploadedUrl(e)} />
-
-      <label>
-        <strong>Choose Category*</strong>
-      </label>
-      <div className="field">
-        <Field name="categoryId" component="select">
-          <option value="" disabled>
-            select category
-          </option>
-          {props.category.map((value, i) => {
-            return (
-              <option value={value._id} key={i}>
-                {value.name}
+          <label>
+            <strong>Choose Category*</strong>
+          </label>
+          <div className="field">
+            <Field name="categoryId" component="select">
+              <option value="" disabled>
+                select category
               </option>
-            );
-          })}
-        </Field>
-      </div>
-      <Button color="blue">Add Product</Button>
+              {props.category.map((value, i) => {
+                return (
+                  <option value={value._id} key={i}>
+                    {value.name}
+                  </option>
+                );
+              })}
+            </Field>
+          </div>
+        </Fragment>
+      ) : null}
+
+      <Button color="blue">Submit</Button>
     </Form>
   );
 };
-
-// Discount Percent =  ((List Price-Sale Price)/List Price)*100
 
 const validate = (values) => {
   const errors = {};
   if (values.showPrice <= values.originalPrice) {
     errors.showPrice = "Labeled price must be greater than Original Price";
+  }
+  if (values.showPrice <= values.originalPrice) {
+    errors.originalPrice = "Labeled price must be greater than Original Price";
   }
   if (!values.name) errors.name = "Required";
   if (!values.originalPrice) errors.originalPrice = "Required";

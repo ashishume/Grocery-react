@@ -9,7 +9,6 @@ class AdminNavbar extends Component {
     this.props.showCategory();
   }
   handleItemClick = (name) => {
-    console.log(name);
     if (name === "category") history.push("/add-category");
     else if (name === "product") history.push("/add-product");
     else if (name === "dashboard") history.push("/");
@@ -18,7 +17,6 @@ class AdminNavbar extends Component {
   };
 
   toggleNavbar = () => {
-    console.log("click");
   };
   render() {
     return (

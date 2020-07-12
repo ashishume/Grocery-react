@@ -14,7 +14,6 @@ class ImageLinksTable extends Component {
   };
 
   editImageLinkHandler = (e) => {
-    console.log(e);
     this.setState({
       toggleModal: true,
       id: e._id,

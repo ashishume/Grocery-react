@@ -6,10 +6,12 @@ import { connect } from "react-redux";
 import {
   showProductsByCategoryId,
   addProducts,
+  updateProduct,
 } from "../store/actions/products";
 import ProductTable from "../components/ProductTable/ProductTable";
-// import Navbar from "../Shared/Navbar/Navbar";
 import AdminNavbar from "../Shared/AdminNavbar/AdminNavbar";
+import ProductEditModal from "../Shared/Modals/ProductEditModal";
+
 class Product extends Component {
   submitProductHandler = (e, imageValue) => {
     if (imageValue !== "") {
@@ -26,16 +28,26 @@ class Product extends Component {
 
   state = {
     categorySelected: false,
+    toggleProductModal: false,
+    editData: [],
   };
 
-  componentDidMount() {
-    // this.props.showCategory();
-  }
   handleDropdownChange = (e, data) => {
     this.setState({
       categorySelected: true,
     });
     this.props.showProductsByCategoryId(data.value);
+  };
+  editClickHandler = (data) => {
+    this.setState({
+      toggleProductModal: true,
+      editData: data,
+    });
+  };
+
+  submitEditProductHandler = async (data) => {
+    await this.props.updateProduct(data._id, data);
+    await this.props.showProductsByCategoryId(data.categoryId);
   };
   render() {
     let categoryOptions = [];
@@ -46,13 +58,14 @@ class Product extends Component {
     return (
       <Fragment>
         {/* <Navbar /> */}
-        <AdminNavbar/>
+        <AdminNavbar />
         <Container>
           <Grid columns={16}>
             <Grid.Row>
               <Grid.Column width={16}>
                 <h2>Add New Product</h2>
                 <ProductForm
+                  isEditableRequired={true}
                   category={this.props.category}
                   submitProductHandler={(e, image) =>
                     this.submitProductHandler(e, image)
@@ -72,12 +85,14 @@ class Product extends Component {
                   options={categoryOptions}
                 />
 
-                {this.props.products ? (
+                {this.props.categoryProducts ? (
                   <ProductTable
+                    onClickEditButton={(data) => this.editClickHandler(data)}
                     isSelected={this.state.categorySelected}
-                    products={this.props.products}
+                    products={this.props.categoryProducts}
                   />
                 ) : null}
+
                 <br />
                 <br />
                 <br />
@@ -85,27 +100,32 @@ class Product extends Component {
               </Grid.Column>
             </Grid.Row>
           </Grid>
+          {this.state.toggleProductModal ? (
+            <ProductEditModal
+              submitEditProductHandler={(data) =>
+                this.submitEditProductHandler(data)
+              }
+              content={this.state.editData}
+              toggleProductModal={this.state.toggleProductModal}
+              closeModal={() => this.setState({ toggleProductModal: false })}
+            />
+          ) : null}
         </Container>
       </Fragment>
     );
   }
 }
-// categoryId: "5f085f9224e4fa7908aa7e8d";
-// description: "This is a fruit which is only found in summer";
-// image: "https://firebasestorage.googleapis.com/v0/b/shopnsave38.appspot.com/o/images%2Fdownload.jpeg?alt=media&token=62e5c4d9-8c10-4b25-b7b4-c93f0a882d77";
-// maxQuantity: 100;
-// name: "Mangoes";
-// originalPrice: 200;
-// showPrice: 250;
-// _id: "5f08620d24e4fa7908aa7e90";
+
 const mapStateToProps = (state) => {
   return {
     category: state.category.category,
-    products: state.products.products,
+    // products: state.products.products,
+    categoryProducts: state.products.categoryProducts,
   };
 };
 export default connect(mapStateToProps, {
   showCategory,
   showProductsByCategoryId,
   addProducts,
+  updateProduct,
 })(Product);

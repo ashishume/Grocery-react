@@ -10,7 +10,6 @@ class Navbar extends Component {
     this.props.showCategory();
   }
   handleItemClick = (e, { name }) => {
-    console.log(name);
     if (name === "category") history.push("/add-category");
     else if (name === "product") history.push("/add-product");
     else if (name === "dashboard") history.push("/");

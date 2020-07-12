@@ -36,5 +36,15 @@ export const showProductsById = (params) => async (dispatch) => {
     type: ActionType.SHOW_PRODUCTS_BY_PRODUCT_ID,
     payload: response.data,
   });
+};
+export const updateProduct = (params, formValues) => async (dispatch) => {
+  const response = await HttpService.put(
+    API_NAME.PRODUCT + "/" + params,
+    formValues
+  );
 
+  dispatch({
+    type: ActionType.UPDATE_PRODUCT,
+    payload: response.data,
+  });
 };

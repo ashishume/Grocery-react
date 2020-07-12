@@ -3,7 +3,8 @@
 }
 .product-image-container {
   text-align: center;
-  box-shadow: 1px 2px 3px 2px lightgray;
+  height: 400px;
+  border: solid 1px lightgray;
 }
 .product-image {
   width: 250px;
@@ -11,19 +12,46 @@
   margin: 30px;
 }
 
-.display-item-name {
-  height: 70px;
-  font-size: 20px;
-  font-weight: 500;
-  /* background-color: red; */
+.addToCartContainer {
+  margin: 20px 0;
 }
 
-.showPrice {
+.itemQuantity {
+  margin: 20px 0;
+}
+.display-item-name {
+  height: 70px;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.product-showPrice {
   font-size: 20px;
+  margin: 5px auto;
   color: gray;
 }
-.originalPrice {
+.product-originalPrice {
   font-size: 25px;
   color: #000;
   font-weight: 800;
+  margin: 5px auto;
+}
+
+.product-description {
+  text-align: justify;
+  font-size: 16px;
+}
+
+@media screen and (max-width: 768px) {
+  .product-showPrice {
+    font-size: 20px;
+    padding: 10px 0;
+    color: gray;
+  }
+  .product-originalPrice {
+    font-size: 25px;
+    color: #000;
+    font-weight: 800;
+    padding: 10px 0;
+  }
 }
