@@ -1,7 +1,7 @@
 export const AddToCartStorageService = (item) => {
   let array = [];
   const renderData = (item) => {
-    item.quantity = 0;
+    item.quantity = 1;
     const getItem = localStorage.getItem("cartItems");
     if (getItem !== null) {
       const tempArray = JSON.parse(getItem);

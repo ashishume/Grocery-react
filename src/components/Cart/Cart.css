@@ -43,7 +43,36 @@
 }
 
 .cart-image {
-  margin: 10px 10px;
+  margin: 10px 0px;
   width: 100px;
   height: 100px;
+}
+ .dropdown {
+    font-size: 11px;
+  }
+
+@media screen and (max-width: 768px) {
+  .product-text {
+    font-size: 14px;
+  }
+  .title-header {
+    font-size: 16px;
+  }
+  .cart-image {
+    margin: 0px 0px;
+    width: 50px;
+    height: 50px;
+  }
+  .dropdown {
+    font-size: 12px;
+  }
+  .popup-remove {
+    font-size: 12px;
+  }
+  .show-price{
+    font-size: 10px;
+  }
+  .item-price{
+    font-size: 15px;
+  }
 }

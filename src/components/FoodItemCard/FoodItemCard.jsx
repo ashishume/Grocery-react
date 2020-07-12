@@ -47,12 +47,15 @@ const FoodItemCard = (props) => {
     setQty(data.value);
   };
 
-  const getOptions = (number, prefix = "Choice ") =>
-    _.times(number, (index) => ({
-      key: index+1,
-      text: `${prefix}${index+1}`,
-      value: index+1,
+  const getOptions = (number, prefix = "Choice ") => {
+    console.log(number);
+    
+    return _.times(number, (index) => ({
+      key: index,
+      text: `${prefix}${index}`,
+      value: index,
     }));
+  };
 
   const removeItemFromCart = () => {
     props.removeFromCartHandler();
@@ -87,6 +90,7 @@ const FoodItemCard = (props) => {
       ) : null}
       {!isVisible ? (
         <div className="quantity-container">
+          {console.log(qty)}
           <Dropdown
             placeholder="Qty"
             compact

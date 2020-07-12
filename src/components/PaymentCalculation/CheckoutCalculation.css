@@ -1,4 +1,19 @@
-.payment-grid-system{
-    font-size: 17px !important;
-    font-weight: 600 !important;
+.payment-grid-system {
+  font-size: 17px !important;
+  font-weight: 600 !important;
+}
+.row {
+  margin: 15px auto;
+}
+@media screen and (max-width: 768px) {
+  .row {
+    margin: 12px auto;
+  }
+  #original-price {
+    margin: 20px auto;
+    text-align: center;
+  }
+  .button-primary {
+    width: 100%;
+  }
 }
