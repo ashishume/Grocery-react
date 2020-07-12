@@ -5,7 +5,7 @@ import CheckOutCalculation from "../PaymentCalculation/CheckOutCalculation";
 import history from "../../history";
 import QuantityDropdown from "../QuantityDropdown";
 const Cart = (props) => {
-  if (props.cartInfo.length == 0) {
+  if (props.cartInfo.length === 0) {
     return (
       <div className="container">
         <div className="row">
@@ -30,7 +30,7 @@ const Cart = (props) => {
             <div className="cart-container">
               <h2 className="title-header">
                 {props.cartInfo.length}
-                {props.cartInfo.length == 1 ? " item" : " items"} in the cart
+                {props.cartInfo.length === 1 ? " item" : " items"} in the cart
               </h2>
               <p>Order summary</p>
               <Divider />
@@ -42,7 +42,7 @@ const Cart = (props) => {
                 return (
                   <div key={i} className="cart-item">
                     <div className="product-name">
-                      <img className="cart-image" src={value.image} />
+                      <img alt="cart" className="cart-image" src={value.image} />
                       <span className="product-text">{name}</span>
                       <div className="item-price">
                         ₹ {value.originalPrice * value.quantity}

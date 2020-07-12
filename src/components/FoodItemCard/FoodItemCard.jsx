@@ -25,7 +25,7 @@ const FoodItemCard = (props) => {
         const tempArray = JSON.parse(localData);
         if (tempArray) {
           tempArray.map((value) => {
-            if (value._id == props.content._id) {
+            if (value._id === props.content._id) {
               setVisible(false);
               setQty(value.quantity);
             }

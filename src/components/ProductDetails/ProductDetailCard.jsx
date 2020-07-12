@@ -32,7 +32,7 @@ const ProductDetailCard = ({
         const tempArray = JSON.parse(localData);
         if (tempArray) {
           tempArray.map((value) => {
-            if (value._id == content._id) {
+            if (value._id === content._id) {
               setVisible(false);
               setQty(value.quantity);
             }
@@ -49,7 +49,7 @@ const ProductDetailCard = ({
           <div className="row">
             <div className="col-sm-6">
               <div className="product-image-container">
-                <img src={content.image} className="product-image" />
+                <img src={content.image} alt="product" className="product-image" />
               </div>
             </div>
             <div className="col-sm-6">

@@ -1,6 +1,5 @@
 import React from "react";
-import { Modal, Header, Button, Image, Icon } from "semantic-ui-react";
-import CategoryForm from "../../components/CategoryForm/CategoryForm";
+import { Modal, Header, Button } from "semantic-ui-react";
 import { updateProduct } from "../../store/actions/products";
 import { connect } from "react-redux";
 import ProductForm from "../../components/ProductForm/ProductForm";

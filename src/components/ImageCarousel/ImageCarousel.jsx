@@ -18,7 +18,7 @@ class ImageCarousel extends Component {
           showStatus={false}
         >
           {this.props.images.map((value,i) => {
-            return <img key={i} className="imageItem" src={value.imageUrl} />;
+            return <img key={i} alt={`dashboard${i}`} className="imageItem" src={value.imageUrl} />;
           })}
         </Carousel>
       </Fragment>

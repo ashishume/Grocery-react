@@ -1,5 +1,5 @@
 import React, { Fragment, Component } from "react";
-import { Container, Button, List, Message, Icon } from "semantic-ui-react";
+import { Container,  List, Message, Icon } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { showAllImages, updateImage } from "../../store/actions/images";
 import AdminNavbar from "../../Shared/AdminNavbar/AdminNavbar";

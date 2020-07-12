@@ -1,6 +1,5 @@
-import React, { Component, useEffect } from "react";
-// import FoodItem from "./components/FoodItem/FoodItem";
-import { Icon, Button, Container, Message } from "semantic-ui-react";
+import React, { Component } from "react";
+import { Icon, Container, Message } from "semantic-ui-react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { connect } from "react-redux";
@@ -11,7 +10,6 @@ import {
 } from "../Shared/StorageService";
 import { showAllLatestProducts } from "../store/actions/products";
 import FoodItemCard from "../components/FoodItemCard/FoodItemCard";
-import history from "../history";
 import "../GlobalStyle.css";
 const responsive = {
   superLargeDesktop: {

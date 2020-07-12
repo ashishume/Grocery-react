@@ -12,7 +12,7 @@ export const addProducts = (formValues) => async (dispatch) => {
   if (response.status === 200) dispatch(reset("ProductForm"));
 };
 export const showAllLatestProducts = () => async (dispatch) => {
-  const response = await HttpService.get(API_NAME.PRODUCT + "/" + "latest");
+  const response = await HttpService.get(`${API_NAME.PRODUCT}/latest`);
 
   dispatch({
     type: ActionType.SHOW_LATEST_PRODUCTS,

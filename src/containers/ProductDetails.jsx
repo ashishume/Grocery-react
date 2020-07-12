@@ -5,7 +5,6 @@ import { showProductsById } from "../store/actions/products";
 import AdminNavbar from "../Shared/AdminNavbar/AdminNavbar";
 import {
   QuantityStorageService,
-  GetAllStorageData,
   AddToCartStorageService,
   RemoveFromCartService,
 } from "../Shared/StorageService";

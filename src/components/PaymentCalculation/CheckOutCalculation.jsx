@@ -1,15 +1,14 @@
 import React, { Fragment } from "react";
-import { Container, Button, Divider, Grid } from "semantic-ui-react";
+import { Button } from "semantic-ui-react";
 import "./CheckoutCalculation.css";
 const CheckOutCalculation = ({ paymentInfo }) => {
   let showPrice = 0;
   let originalPrice = 0;
-  const renderPaymentData = () => {
+  const renderPaymentData = () =>
     paymentInfo.map((info) => {
       showPrice += info.showPrice * info.quantity;
       originalPrice += info.originalPrice * info.quantity;
     });
-  };
 
   return (
     <Fragment>

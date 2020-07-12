@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { showCategory } from "../../store/actions/category";
 import { connect } from "react-redux";
 import history from "../../history";
@@ -16,15 +16,14 @@ class AdminNavbar extends Component {
     else if (name === "cart") history.push("/checkout/cart");
   };
 
-  toggleNavbar = () => {
-  };
+  toggleNavbar = () => {};
   render() {
     return (
       <nav
         className="navbar navbar-expand-lg navbar-light"
         style={{ backgroundColor: "#0091f9" }}
       >
-        <a className="navbar-brand">Shop N Save</a>
+        <span className="navbar-brand">Shop N Save</span>
         <button
           className="navbar-toggler"
           type="button"
@@ -42,7 +41,7 @@ class AdminNavbar extends Component {
               onClick={() => this.handleItemClick("dashboard")}
               className="nav-item"
             >
-              <a className="nav-link">Home</a>
+              <span className="nav-link">Home</span>
             </li>
           </ul>
           <span className="navbar-text">
