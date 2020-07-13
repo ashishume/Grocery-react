@@ -3,13 +3,21 @@ import HttpService from "../../API/HttpService";
 import { API_NAME } from "../../API/ApiPaths";
 
 export const signUpUser = (formValues) => async (dispatch) => {
-         const response = await HttpService.post(API_NAME.AUTH, formValues);
+  const response = await HttpService.post(API_NAME.AUTH, formValues);
 
-         dispatch({
-           type: ActionType.SIGN_UP,
-           payload: response.data,
-         });
-       };
+  dispatch({
+    type: ActionType.SIGN_UP,
+    payload: response.data,
+  });
+
+  const type = Math.floor(Math.random(0, 1000000) * 1000000000);
+  if (response.status == 200) {
+    localStorage.setItem("name", response.data.name);
+    localStorage.setItem("email", response.data.email);
+    localStorage.setItem("type", `${type}${response.data.type}`);
+    localStorage.setItem("userId", response.data.userId);
+  }
+};
 
 export const signIn = (value) => async (dispatch) => {
   const response = await HttpService.post(`${API_NAME.AUTH}/login`, value);

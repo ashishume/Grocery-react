@@ -73,10 +73,7 @@ class Orders extends Component {
       email: localStorage.getItem("email"),
       phone: localStorage.getItem("phone"),
     };
-    console.log(body);
-
     HttpService.post(API_NAME.PAYMENTS, body).then((response) => {
-      console.log(response);
       if (response.status == 201)
         window.location.href = response.data.paymentLink;
     });

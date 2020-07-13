@@ -52,14 +52,6 @@ class Signup extends Component {
       .then((data) => {
         this.props.signUpUser(this.state.userData);
         if (data.user) {
-          const type = Math.floor(Math.random(0, 1000000) * 1000000000);
-          localStorage.setItem("email", this.state.userData.email);
-          localStorage.setItem(
-            "type",
-            `${type}${this.state.userData.userType}`
-          );
-          localStorage.setItem("name", this.state.userData.name);
-          localStorage.setItem("userId", this.state.userData.userId);
           history.push("/");
         }
       })

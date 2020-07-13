@@ -7,13 +7,12 @@ import history from "../history";
 import queryString from "query-string";
 
 class PaymentSuccess extends Component {
+
   componentDidMount() {
     const { location } = this.props;
     const query = queryString.parse(location.search);
-    console.log(query);
-    console.log(localStorage.getItem("pendingOrder"));
-
-    // this.props.addOrders()
+    const pendingOrder = JSON.parse(localStorage.getItem("pendingOrder"));
+    this.props.addOrders(pendingOrder);
   }
 
   render() {
@@ -23,16 +22,18 @@ class PaymentSuccess extends Component {
         <div className="container">
           <div className="row">
             <div className="col-sm-12" style={{ textAlign: "center" }}>
-              <h2 style={{ fontWeight: "lighter" }}>
-                Congratulations your order has been confirmed
-              </h2>
-              <Icon name="check circle" size="massive" color="green" />
-              <br />
-              <br />
-              <Button onClick={() => history.push("/my-orders")}>
-                <Icon name="cart" />
-                My Orders
-              </Button>
+              <Fragment>
+                <h2 style={{ fontWeight: "lighter" }}>
+                  Congratulations your order has been confirmed
+                </h2>
+                <Icon name="check circle" size="massive" color="green" />
+                <br />
+                <br />
+                <Button onClick={() => history.push("/my-orders")}>
+                  <Icon name="cart" />
+                  My Orders
+                </Button>
+              </Fragment>
             </div>
           </div>
         </div>
