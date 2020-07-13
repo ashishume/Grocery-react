@@ -17,7 +17,7 @@ const ProtectedRoutes = ({ component: Component, ...rest }) => {
         if (isSignedIn) {
           return <Component {...props} />;
         } else {
-          return <Redirect to="/" />;
+          return <Redirect to="/auth/signin" />;
         }
       }}
     />

@@ -34,15 +34,12 @@ class Signup extends Component {
       .auth()
       .signInWithPhoneNumber(phone, appVerifier)
       .then((result) => {
-        console.log(result);
-
         this.setState({
           isVisible: true,
           result: result,
         });
       })
       .catch(function (error) {
-        console.log(error);
         this.setState({
           error: true,
         });
@@ -67,8 +64,6 @@ class Signup extends Component {
         }
       })
       .catch((error) => {
-        console.log(error);
-
         this.setState({
           error: true,
         });

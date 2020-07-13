@@ -2,6 +2,7 @@ import ProtectedRoutes from "./ProtectedRoutes";
 import React, { Suspense, Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Loader from "../Shared/Loader/Loader";
+const PaymentSuccess = React.lazy(() => import("../containers/PaymentSuccess"));
 const MyOrders = React.lazy(() => import("../containers/MyOrders"));
 const Orders = React.lazy(() => import("../containers/Orders"));
 const Signin = React.lazy(() => import("../containers/Auth/Signin/Signin"));
@@ -33,6 +34,11 @@ class MainNavigation extends Component {
             {/*Protected Routes */}
 
             <ProtectedRoutes path="/add-product" exact component={Product} />
+            <ProtectedRoutes
+              path="/payment-complete"
+              exact
+              component={PaymentSuccess}
+            />
             <ProtectedRoutes path="/my-orders" exact component={MyOrders} />
             <ProtectedRoutes path="/checkout/orders" exact component={Orders} />
             <ProtectedRoutes path="/add-category" exact component={Category} />

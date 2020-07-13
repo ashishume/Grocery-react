@@ -25,8 +25,8 @@ const OrdersForm = (props) => {
         label="Phone Number*"
       />
       <Button floated="right" fluid color="blue">
-        Place Order
-        <Icon name="arrow right" />
+        Save Address &nbsp;
+        <Icon name="check" />
       </Button>
     </Form>
   );

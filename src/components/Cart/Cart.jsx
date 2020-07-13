@@ -93,6 +93,7 @@ const Cart = (props) => {
             <div className="payment-container">
               {props.cartInfo ? (
                 <CheckOutCalculation
+                  disabledButton={false}
                   onClickPaymentHandler={() => onClickPaymentHandler()}
                   buttonText="Proceed"
                   paymentInfo={props.cartInfo}

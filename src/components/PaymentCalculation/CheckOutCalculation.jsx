@@ -5,6 +5,7 @@ const CheckOutCalculation = ({
   paymentInfo,
   onClickPaymentHandler,
   buttonText,
+  disabledButton,
 }) => {
   let showPrice = 0;
   let originalPrice = 0;
@@ -69,6 +70,7 @@ const CheckOutCalculation = ({
           </div>
           <div className="col-sm-6">
             <Button
+              disabled={disabledButton}
               icon="payment"
               className="button-primary"
               fluid

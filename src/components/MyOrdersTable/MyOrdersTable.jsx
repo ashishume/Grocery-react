@@ -14,9 +14,7 @@ const MyOrdersTable = (props) => {
     headers = Object.keys(props.orders[0]);
   }
 
-  const onClickEditButton = (item) => {
-    console.log(item);
-  };
+
 
   return (
     <Fragment>
@@ -32,7 +30,6 @@ const MyOrdersTable = (props) => {
                 </Fragment>
               );
             })}
-            <Table.HeaderCell>Edit</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
@@ -82,14 +79,6 @@ const MyOrdersTable = (props) => {
                     {new Date(items.inRouteDate).toLocaleDateString()}
                   </Table.Cell>
                 ) : null}
-                <Table.Cell>
-                  {
-                    <Icon
-                      name="edit"
-                      onClick={() => onClickEditButton(items)}
-                    />
-                  }
-                </Table.Cell>
               </Table.Row>
             );
           })}
