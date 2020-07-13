@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import Cart from "../components/Cart/Cart";
-import AdminNavbar from "../Shared/AdminNavbar/AdminNavbar";
+import Navbar from "../Shared/Navbar/Navbar";
 import { Container } from "semantic-ui-react";
 
 import {
@@ -35,7 +35,7 @@ class CheckoutCart extends Component {
   render() {
     return (
       <Fragment>
-        <AdminNavbar />
+        <Navbar />
         <Container>
           <Cart
             removeItemFromCart={(value) => this.removeItemFromCart(value)}

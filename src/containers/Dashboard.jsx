@@ -4,7 +4,7 @@ import { Icon, Container, Divider } from "semantic-ui-react";
 import { showProductsByCategoryId } from "../store/actions/products";
 import CategoryCard from "../components/CategoryCard/CategoryCard";
 import history from "../history";
-import AdminNavbar from "../Shared/AdminNavbar/AdminNavbar";
+import Navbar from "../Shared/Navbar/Navbar";
 import ItemListScroller from "./ItemListScroller";
 import "../GlobalStyle.css";
 import ImageCarousel from "../components/ImageCarousel/ImageCarousel";
@@ -25,7 +25,7 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        <AdminNavbar />
+        <Navbar />
         <ImageCarousel onItemClickEvent={(e) => this.onItemClickEvent(e)} />
         <Container style={{margin:'0 auto',display:'block'}}>
           <h2 className="heading">

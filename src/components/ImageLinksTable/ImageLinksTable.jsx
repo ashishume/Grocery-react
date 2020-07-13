@@ -2,7 +2,7 @@ import React, { Fragment, Component } from "react";
 import { Container,  List, Message, Icon } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { showAllImages, updateImage } from "../../store/actions/images";
-import AdminNavbar from "../../Shared/AdminNavbar/AdminNavbar";
+import Navbar from "../../Shared/Navbar/Navbar";
 import ImageLinkForm from "../ImageLinkForm/ImageLinkForm";
 class ImageLinksTable extends Component {
   componentDidMount() {
@@ -31,7 +31,7 @@ class ImageLinksTable extends Component {
   render() {
     return (
       <Fragment>
-        <AdminNavbar />
+        <Navbar />
         <Container>
           <List divided relaxed>
             {this.props.images.map((value, i) => {

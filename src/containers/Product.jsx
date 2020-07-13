@@ -9,7 +9,7 @@ import {
   updateProduct,
 } from "../store/actions/products";
 import ProductTable from "../components/ProductTable/ProductTable";
-import AdminNavbar from "../Shared/AdminNavbar/AdminNavbar";
+import Navbar from "../Shared/Navbar/Navbar";
 import ProductEditModal from "../Shared/Modals/ProductEditModal";
 
 class Product extends Component {
@@ -57,8 +57,7 @@ class Product extends Component {
 
     return (
       <Fragment>
-        {/* <Navbar /> */}
-        <AdminNavbar />
+        <Navbar />
         <Container>
           <Grid columns={16}>
             <Grid.Row>

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import "./Signup.css";
 import SignupForm from "../../../components/Auth/SignupForm";
-import AdminNavbar from "../../../Shared/AdminNavbar/AdminNavbar";
+import Navbar from "../../../Shared/Navbar/Navbar";
 import history from "../../../history";
 import firebase from "../../../firebase";
 import PhoneForm from "../PhoneAuth/PhoneForm";
@@ -49,7 +49,7 @@ class Signup extends Component {
   render() {
     return (
       <Fragment>
-        <AdminNavbar />
+        <Navbar />
         <div className="container">
           <div className="row">
             <div className="col-sm-6" style={{ textAlign: "center" }}>

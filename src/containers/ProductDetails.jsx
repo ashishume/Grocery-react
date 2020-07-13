@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import ProductDetailCard from "../components/ProductDetails/ProductDetailCard";
 import { connect } from "react-redux";
 import { showProductsById } from "../store/actions/products";
-import AdminNavbar from "../Shared/AdminNavbar/AdminNavbar";
+import Navbar from "../Shared/Navbar/Navbar";
 import {
   QuantityStorageService,
   AddToCartStorageService,
@@ -27,7 +27,7 @@ class ProductDetails extends Component {
   render() {
     return (
       <Fragment>
-        <AdminNavbar />
+        <Navbar />
         <div className="container">
           <div className="row">
             <div className="col-sm-12">

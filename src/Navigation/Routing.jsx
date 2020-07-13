@@ -1,10 +1,8 @@
 import React, { Suspense, Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Loader from "../Shared/Loader/Loader";
+const Signin = React.lazy(() => import("../containers/Auth/Signin/Signin"));
 const Dashboard = React.lazy(() => import("../containers/Dashboard"));
-const PhoneAuth = React.lazy(() =>
-  import("../containers/Auth/PhoneAuth/PhoneAuth")
-);
 const Category = React.lazy(() => import("../containers/Category"));
 const Product = React.lazy(() => import("../containers/Product"));
 const ImageLinksTable = React.lazy(() =>
@@ -23,9 +21,9 @@ class MainNavigation extends Component {
       <div>
         <Suspense fallback={<Loader />}>
           <Switch>
-            <Route path="/" exact component={Dashboard} />
+            <Route path="/" exact component={Signin} />
+            <Route path="/dashboard" exact component={Dashboard} />
             <Route path="/auth/signup" exact component={Signup} />
-            <Route path="/auth/phone-auth" exact component={PhoneAuth} />
             <Route path="/add-category" exact component={Category} />
             <Route path="/add-product" exact component={Product} />
             <Route path="/add-image-link" exact component={ImageLinksTable} />

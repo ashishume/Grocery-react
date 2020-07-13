@@ -3,7 +3,7 @@ import React, { Component, Fragment } from "react";
 import { showProductsByCategoryId } from "../store/actions/products";
 import { connect } from "react-redux";
 import FoodItemCard from "../components/FoodItemCard/FoodItemCard";
-import AdminNavbar from "../Shared/AdminNavbar/AdminNavbar";
+import Navbar from "../Shared/Navbar/Navbar";
 import {
   AddToCartStorageService,
   QuantityStorageService,
@@ -31,7 +31,7 @@ class ShowProductsList extends Component {
   render() {
     return (
       <Fragment>
-        <AdminNavbar />
+        <Navbar />
         <Container>
           {this.props.products.length ? (
             this.props.products.map((value, i) => {

@@ -8,7 +8,7 @@ import {
   archiveCategory,
   updateCategory,
 } from "../store/actions/category";
-import AdminNavbar from "../Shared/AdminNavbar/AdminNavbar";
+import Navbar from "../Shared/Navbar/Navbar";
 import CategoryEditModal from "../Shared/Modals/CategoryEditModal";
 // import Navbar from "../Shared/Navbar/Navbar";
 class Category extends Component {
@@ -52,7 +52,7 @@ class Category extends Component {
     return (
       <Fragment>
         {/* <Navbar /> */}
-        <AdminNavbar />
+        <Navbar />
         <Container style={{ marginTop: "20px" }}>
           <Grid columns={2}>
             <h2>Category Configurations</h2>
