@@ -6,14 +6,26 @@ import history from "../../../history";
 import firebase from "../../../firebase";
 import PhoneForm from "../../../components/Auth/PhoneAuth/PhoneForm";
 import { Link } from "react-router-dom";
+import { signUpUser } from "../../../store/actions/auth";
+import { connect } from "react-redux";
+import { checkAuthStatus } from "../../../Shared/AuthService";
 class Signup extends Component {
   resultData;
   state = {
     isVisible: false,
     result: "",
     error: false,
+    userData: "",
   };
   submitHandler = (value) => {
+    const body = {
+      ...value,
+      userType: 3,
+    };
+    this.setState({
+      userData: body,
+    });
+
     var appVerifier = new firebase.auth.RecaptchaVerifier(
       "recaptcha-container"
     );
@@ -22,12 +34,15 @@ class Signup extends Component {
       .auth()
       .signInWithPhoneNumber(phone, appVerifier)
       .then((result) => {
+        console.log(result);
+
         this.setState({
           isVisible: true,
           result: result,
         });
       })
       .catch(function (error) {
+        console.log(error);
         this.setState({
           error: true,
         });
@@ -38,14 +53,32 @@ class Signup extends Component {
     this.state.result
       .confirm(e.phoneOTP)
       .then((data) => {
-        if (data.user) history.push("/");
+        this.props.signUpUser(this.state.userData);
+        if (data.user) {
+          const type = Math.floor(Math.random(0, 1000000) * 1000000000);
+          localStorage.setItem("email", this.state.userData.email);
+          localStorage.setItem(
+            "type",
+            `${type}${this.state.userData.userType}`
+          );
+          localStorage.setItem("name", this.state.userData.name);
+          localStorage.setItem("userId", this.state.userData.userId);
+          history.push("/");
+        }
       })
       .catch((error) => {
+        console.log(error);
+
         this.setState({
           error: true,
         });
       });
   };
+
+  componentDidMount() {
+    if (checkAuthStatus()) history.push("/");
+  }
+
   render() {
     return (
       <Fragment>
@@ -87,4 +120,4 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+export default connect("", { signUpUser })(Signup);

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { showCategory } from "../../store/actions/category";
 import { connect } from "react-redux";
 import history from "../../history";
@@ -17,10 +17,11 @@ class Navbar extends Component {
     else if (name === "dashboard") history.push("/");
     else if (name === "add-link") history.push("/add-image-link");
     else if (name === "cart") history.push("/checkout/cart");
+    else if (name === "myOrders") history.push("/my-orders");
   };
   onSignOutHandler = () => {
     localStorage.clear();
-    history.push("/");
+    history.push("/auth/signin");
   };
   toggleNavbar = () => {};
   render() {
@@ -49,8 +50,20 @@ class Navbar extends Component {
               onClick={() => this.handleItemClick("dashboard")}
               className="nav-item"
             >
-              <span className="nav-link" style={{cursor:'pointer'}}>Shop</span>
+              <span className="nav-link" style={{ cursor: "pointer" }}>
+                Shop
+              </span>
             </li>
+            {checkAuthStatus() ? (
+              <li
+                onClick={() => this.handleItemClick("myOrders")}
+                className="nav-item"
+              >
+                <span className="nav-link" style={{ cursor: "pointer" }}>
+                  My orders
+                </span>
+              </li>
+            ) : null}
           </ul>
           <span className="navbar-text">
             {!checkAuthStatus() ? (
@@ -65,16 +78,18 @@ class Navbar extends Component {
                 }
               />
             ) : (
-              <Popup
-                content="Signout"
-                trigger={
-                  <Icon
-                    size="big"
-                    onClick={() => this.onSignOutHandler()}
-                    name="sign-out"
-                  />
-                }
-              />
+              <Fragment>
+                <Popup
+                  content="Signout"
+                  trigger={
+                    <Icon
+                      size="big"
+                      onClick={() => this.onSignOutHandler()}
+                      name="sign-out"
+                    />
+                  }
+                />
+              </Fragment>
             )}
             <Icon
               name="cart"

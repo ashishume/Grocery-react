@@ -22,6 +22,10 @@ const Cart = (props) => {
       </div>
     );
   }
+
+  const onClickPaymentHandler = () => {
+    history.push("/checkout/orders");
+  };
   return (
     <Fragment>
       <div className="container">
@@ -42,7 +46,11 @@ const Cart = (props) => {
                 return (
                   <div key={i} className="cart-item">
                     <div className="product-name">
-                      <img alt="cart" className="cart-image" src={value.image} />
+                      <img
+                        alt="cart"
+                        className="cart-image"
+                        src={value.image}
+                      />
                       <span className="product-text">{name}</span>
                       <div className="item-price">
                         ₹ {value.originalPrice * value.quantity}
@@ -84,7 +92,11 @@ const Cart = (props) => {
           <div className="col-sm-6">
             <div className="payment-container">
               {props.cartInfo ? (
-                <CheckOutCalculation paymentInfo={props.cartInfo} />
+                <CheckOutCalculation
+                  onClickPaymentHandler={() => onClickPaymentHandler()}
+                  buttonText="Proceed"
+                  paymentInfo={props.cartInfo}
+                />
               ) : null}
             </div>
           </div>
