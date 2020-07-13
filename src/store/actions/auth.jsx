@@ -1,7 +1,6 @@
 import * as ActionType from "./actionTypes";
 import HttpService from "../../API/HttpService";
 import { API_NAME } from "../../API/ApiPaths";
-import { reset } from "redux-form";
 
 export const signUp = (formValues) => async (dispatch) => {
   const response = await HttpService.post(API_NAME.AUTH, formValues);
@@ -12,17 +11,24 @@ export const signUp = (formValues) => async (dispatch) => {
   });
 };
 
-export const signIn = () => async (dispatch) => {
-  const response = await HttpService.get(`${API_NAME.AUTH}/login`);
+export const signIn = (value) => async (dispatch) => {
+  const response = await HttpService.post(`${API_NAME.AUTH}/login`, value);
 
   dispatch({
     type: ActionType.SIGN_IN,
     payload: response.data,
   });
+
+  if (response.status === 200) {
+    const type = Math.floor(Math.random(0, 1000000) * 1000000000);
+    localStorage.setItem("email", response.data.email);
+    localStorage.setItem("type", `${type}${response.data.type}`);
+    localStorage.setItem("name", response.data.name);
+  }
 };
 
 export const signOut = () => async (dispatch) => {
-//   const response = await HttpService.post(API_NAME.AUTH);
+  const response = await HttpService.post(API_NAME.AUTH);
 
   dispatch({
     type: ActionType.SIGN_OUT,

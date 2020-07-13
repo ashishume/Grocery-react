@@ -1,7 +1,7 @@
 import * as ActionTypes from "../actions/actionTypes";
 
 const initialState = {
-  auth: [],
+  auth: false,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -9,12 +9,12 @@ const authReducer = (state = initialState, action) => {
     case ActionTypes.SIGN_IN:
       return {
         ...state,
-        auth: action.payload,
+        auth: true,
       };
     case ActionTypes.SIGN_OUT:
       return {
         ...state,
-        auth: action.payload,
+        auth: false,
       };
     default:
       return state;

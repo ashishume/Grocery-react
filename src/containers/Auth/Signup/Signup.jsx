@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from "react";
 import "./Signup.css";
-import SignupForm from "../../../components/Auth/SignupForm";
+import SignupForm from "../../../components/Auth/SignupForm/SignupForm";
 import Navbar from "../../../Shared/Navbar/Navbar";
 import history from "../../../history";
 import firebase from "../../../firebase";
-import PhoneForm from "../PhoneAuth/PhoneForm";
+import PhoneForm from "../../../components/Auth/PhoneAuth/PhoneForm";
+import { Link } from "react-router-dom";
 class Signup extends Component {
   resultData;
   state = {
@@ -27,7 +28,6 @@ class Signup extends Component {
         });
       })
       .catch(function (error) {
-        console.log(error);
         this.setState({
           error: true,
         });
@@ -70,6 +70,10 @@ class Signup extends Component {
                 <Fragment>
                   <SignupForm submitHandler={(e) => this.submitHandler(e)} />
                   <div id="recaptcha-container"></div>
+
+                  <p className="signup-description-footer">
+                    Already have an account? <Link to="/">Signin here</Link>
+                  </p>
                 </Fragment>
               )}
               {this.state.error ? (
