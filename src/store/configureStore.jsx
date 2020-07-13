@@ -7,12 +7,14 @@ import loaderReducer from "./reducers/loader";
 import productsReducer from "./reducers/products";
 import categoryReducer from "./reducers/category";
 import imagesReducer from "./reducers/images";
+import authReducer from "./reducers/auth";
 
 const rootReducer = combineReducers({
   loader: loaderReducer,
   products: productsReducer,
   category: categoryReducer,
   images: imagesReducer,
+  auth: authReducer,
   form: formReducer,
 });
 

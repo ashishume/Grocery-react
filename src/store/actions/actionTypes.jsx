@@ -4,6 +4,7 @@ export const HIDE_LOADER = "HIDE_LOADER";
 //APIs ACTION TYPES
 export const SIGN_IN = "SIGN_IN";
 export const SIGN_OUT = "SIGN_OUT";
+export const SIGN_UP = "SIGN_UP";
 
 export const ADD_CATEGORY = "ADD_CATEGORY";
 export const SHOW_CATEGORY = "SHOW_CATEGORY";

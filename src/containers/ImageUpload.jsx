@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { storage } from "../firebase";
+import firebase from "../firebase";
 import { Input, Button, Message, FormGroup, Progress } from "semantic-ui-react";
-
 const ImageUpload = (props) => {
   const [image, setImage] = useState(null);
   const [percent, setPercent] = useState(0);
@@ -15,7 +14,10 @@ const ImageUpload = (props) => {
 
   const handleUploadImage = (e) => {
     e.preventDefault();
-    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    const uploadTask = firebase
+      .storage()
+      .ref(`images/${image.name}`)
+      .put(image);
     uploadTask.on(
       "state_changed",
       (snapshot) => {
@@ -25,7 +27,8 @@ const ImageUpload = (props) => {
         console.log(error);
       },
       () => {
-        storage
+        firebase
+          .storage()
           .ref("images")
           .child(image.name)
           .getDownloadURL()
