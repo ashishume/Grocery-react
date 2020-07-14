@@ -47,4 +47,4 @@ class Signin extends Component {
   }
 }
 
-export default connect('', { signIn })(Signin);
+export default connect("", { signIn })(Signin);

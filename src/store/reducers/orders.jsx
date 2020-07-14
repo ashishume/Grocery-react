@@ -17,6 +17,11 @@ const ordersReducer = (state = initialState, action) => {
         ...state,
         orders: action.payload,
       };
+    case ActionTypes.UPDATE_ORDER_STATUS:
+      return {
+        ...state,
+        ordersResponse: action.payload,
+      };
     case ActionTypes.SHOW_ORDERS_BY_CUSTOMER_ID:
       return {
         ...state,

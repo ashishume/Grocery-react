@@ -22,7 +22,7 @@ export const showCategory = () => async (dispatch) => {
   });
 };
 export const archiveCategory = (id) => async (dispatch) => {
-  const response = await HttpService.delete(API_NAME.CATEGORY + "/" + id);
+  const response = await HttpService.delete(API_NAME.CATEGORY + id);
 
   dispatch({
     type: ActionType.DELETE_CATEGORY,
@@ -30,10 +30,7 @@ export const archiveCategory = (id) => async (dispatch) => {
   });
 };
 export const updateCategory = (id, formValues) => async (dispatch) => {
-  const response = await HttpService.put(
-    API_NAME.CATEGORY + "/" + id,
-    formValues
-  );
+  const response = await HttpService.put(API_NAME.CATEGORY + id, formValues);
 
   dispatch({
     type: ActionType.UPDATE_CATEGORY,

@@ -3,35 +3,59 @@ import { showCategory } from "../../store/actions/category";
 import { connect } from "react-redux";
 import history from "../../history";
 import "./Navbar.css";
-import { Button, Popup, Icon } from "semantic-ui-react";
+import { Popup, Icon } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { checkAuthStatus } from "../AuthService";
+import _ from "lodash";
+import SearchBar from "../SearchBar";
+
 class Navbar extends Component {
   componentDidMount() {
     this.props.showCategory();
   }
   handleItemClick = (name) => {
     if (name === "signin") history.push("/auth/signin");
-    if (name === "category") history.push("/add-category");
-    else if (name === "product") history.push("/add-product");
     else if (name === "dashboard") history.push("/");
-    else if (name === "add-link") history.push("/add-image-link");
     else if (name === "cart") history.push("/checkout/cart");
     else if (name === "myOrders") history.push("/my-orders");
+    else if (name === "admin") history.push("/admin-access-details");
   };
   onSignOutHandler = () => {
     localStorage.clear();
     history.push("/auth/signin");
   };
-  toggleNavbar = () => {};
+  state = {
+    isAdmin: false,
+  };
+
+  componentWillMount() {
+    this.checkAdminPanel();
+  }
+  checkAdminPanel = () => {
+    const type = localStorage.getItem("type");
+    if (type) {
+      const checkUserType = type.toString().split("")[type.length - 1];
+      if (checkUserType == 1) {
+        this.setState({
+          isAdmin: true,
+        });
+      }
+    }
+  };
+
   render() {
     return (
       <nav
         className="navbar navbar-expand-lg navbar-light"
-        style={{ backgroundColor: "#0091f9" }}
+        style={{ backgroundColor: "#fff" }}
       >
         <Link to="/">
-          <span className="navbar-brand">Shop N Save</span>
+          <span className="navbar-brand">
+            <img
+              src={require("../../assets/logo.jpeg")}
+              style={{ width: "100px" }}
+            />
+          </span>
         </Link>
         <button
           className="navbar-toggler"
@@ -54,6 +78,16 @@ class Navbar extends Component {
                 Shop
               </span>
             </li>
+            <li
+              onClick={() => this.handleItemClick("admin")}
+              className="nav-item"
+            >
+              {this.state.isAdmin ? (
+                <span className="nav-link" style={{ cursor: "pointer" }}>
+                  Admin
+                </span>
+              ) : null}
+            </li>
             {checkAuthStatus() ? (
               <li
                 onClick={() => this.handleItemClick("myOrders")}
@@ -64,7 +98,9 @@ class Navbar extends Component {
                 </span>
               </li>
             ) : null}
+            <SearchBar />
           </ul>
+
           <span className="navbar-text">
             {!checkAuthStatus() ? (
               <Popup

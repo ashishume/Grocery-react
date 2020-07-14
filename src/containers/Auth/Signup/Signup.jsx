@@ -20,7 +20,7 @@ class Signup extends Component {
   submitHandler = (value) => {
     const body = {
       ...value,
-      userType: 3,
+      userType: 2,
     };
     this.setState({
       userData: body,
@@ -51,9 +51,9 @@ class Signup extends Component {
       .confirm(e.phoneOTP)
       .then((data) => {
         this.props.signUpUser(this.state.userData);
-        if (data.user) {
-          history.push("/");
-        }
+        // if (data.user) {
+        //   history.push("/");
+        // }
       })
       .catch((error) => {
         this.setState({

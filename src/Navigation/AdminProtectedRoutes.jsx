@@ -1,10 +1,14 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-const ProtectedRoutes = ({ component: Component, ...rest }) => {
+const AdminProtectedRoutes = ({ component: Component, ...rest }) => {
   let isSignedIn = false;
-  const type = localStorage.getItem("userId");
+  let checkUserType;
+  const type = localStorage.getItem("type");
   if (type) {
-    isSignedIn = true;
+    checkUserType = type.toString().split("")[type.length - 1];
+    if (checkUserType == 1) {
+      isSignedIn = true;
+    }
   }
   return (
     <Route
@@ -20,4 +24,4 @@ const ProtectedRoutes = ({ component: Component, ...rest }) => {
   );
 };
 
-export default ProtectedRoutes;
+export default AdminProtectedRoutes;

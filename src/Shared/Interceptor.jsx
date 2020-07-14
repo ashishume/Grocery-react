@@ -3,8 +3,12 @@ import http from "../API/HttpService";
 import { loading } from "../store/actions/loader";
 import { connect } from "react-redux";
 import Loader from "./Loader/Loader";
+import { Message } from "semantic-ui-react";
 
 class LoaderComponent extends Component {
+  state = {
+    errorMessage: "",
+  };
   componentDidMount() {
     const self = this;
     http.interceptors.request.use(
@@ -14,7 +18,6 @@ class LoaderComponent extends Component {
       },
       (error) => {
         self.props.loading(false);
-
         return Promise.reject(error);
       }
     );
@@ -26,12 +29,40 @@ class LoaderComponent extends Component {
       },
       (error) => {
         self.props.loading(false);
+
+        this.setState({
+          errorMessage: error.response.data.message,
+        });
+
+        console.log("==>", error.response.data.message);
+
         return Promise.reject(error);
       }
     );
   }
   render() {
-    return <Fragment>{this.props.loader ? <Loader /> : null}</Fragment>;
+    setTimeout(() => {
+      this.setState({ errorMessage: "" });
+    }, 7000);
+    return (
+      <Fragment>
+        {this.props.loader ? <Loader /> : null}
+        {this.state.errorMessage ? (
+          <Message
+            color="red"
+            style={{
+              margin: "0 auto",
+              textAlign: "center",
+              position: "absolute",
+              top:'70%',
+              left:'40%'
+            }}
+          >
+            {this.state.errorMessage}
+          </Message>
+        ) : null}
+      </Fragment>
+    );
   }
 }
 

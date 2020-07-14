@@ -1,6 +1,7 @@
 import * as ActionType from "./actionTypes";
 import HttpService from "../../API/HttpService";
 import { API_NAME } from "../../API/ApiPaths";
+import history from "../../history";
 
 export const signUpUser = (formValues) => async (dispatch) => {
   const response = await HttpService.post(API_NAME.AUTH, formValues);
@@ -16,11 +17,12 @@ export const signUpUser = (formValues) => async (dispatch) => {
     localStorage.setItem("email", response.data.email);
     localStorage.setItem("type", `${type}${response.data.type}`);
     localStorage.setItem("userId", response.data.userId);
+    history.push("/");
   }
 };
 
 export const signIn = (value) => async (dispatch) => {
-  const response = await HttpService.post(`${API_NAME.AUTH}/login`, value);
+  const response = await HttpService.post(`${API_NAME.AUTH}login`, value);
 
   dispatch({
     type: ActionType.SIGN_IN,

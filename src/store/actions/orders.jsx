@@ -12,7 +12,7 @@ export const addOrders = (formValues) => async (dispatch) => {
   if (response.status === 200) {
     localStorage.removeItem("pendingOrder");
     localStorage.removeItem("cartItems");
-    history.push('/my-orders')
+    history.push("/my-orders");
   }
 };
 
@@ -26,10 +26,22 @@ export const showAllOrders = () => async (dispatch) => {
 };
 
 export const showOrderByCustomerId = (id) => async (dispatch) => {
-  const response = await HttpService.get(`${API_NAME.ORDERS}/users/${id}`);
+  const response = await HttpService.get(`${API_NAME.ORDERS}users/${id}`);
 
   dispatch({
     type: ActionType.SHOW_ORDERS_BY_CUSTOMER_ID,
+    payload: response.data,
+  });
+};
+
+export const updateOrder = (body) => async (dispatch) => {
+  const response = await HttpService.put(
+    `${API_NAME.ORDERS}updateOrderStatus`,
+    body
+  );
+
+  dispatch({
+    type: ActionType.UPDATE_ORDER_STATUS,
     payload: response.data,
   });
 };

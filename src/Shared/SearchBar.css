@@ -1,0 +1,20 @@
+.list-group {
+  position: absolute;
+  z-index: 1000;
+  margin: 0 auto;
+  display: block;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  width: 60vw;
+}
+
+.list-group-item {
+  /* padding: 20px auto; */
+  background-color: #fff;
+}
+.list-group-item:hover {
+  /* padding: 20px auto; */
+  background-color: lightskyblue;
+}

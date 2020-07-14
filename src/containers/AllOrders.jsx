@@ -1,17 +1,19 @@
 import React, { Component, Fragment } from "react";
 import MyOrdersTable from "../components/MyOrdersTable/MyOrdersTable";
 import { connect } from "react-redux";
-import { showOrderByCustomerId } from "../store/actions/orders";
+import { showAllOrders, updateOrder } from "../store/actions/orders";
 import Navbar from "../Shared/Navbar/Navbar";
 import { Button, Message } from "semantic-ui-react";
 import history from "../history";
 
-class MyOrders extends Component {
+class AllOrders extends Component {
   componentDidMount() {
-    const userId = localStorage.getItem("userId");
-    this.props.showOrderByCustomerId(userId);
+    this.props.showAllOrders();
   }
-
+  updateOrderStatus = async (e) => {
+    await this.props.updateOrder(e);
+    await this.props.showAllOrders();
+  };
   render() {
     return (
       <Fragment>
@@ -19,10 +21,11 @@ class MyOrders extends Component {
         <div className="container">
           <div className="row">
             <div className="col-sm-12">
-              <h2>My Orders</h2>
+              <h2>All Orders</h2>
               {this.props.orders.length ? (
                 <MyOrdersTable
-                  isAdminOrders={false}
+                  updateOrderStatus={(e) => this.updateOrderStatus(e)}
+                  isAdminOrders={true}
                   orders={this.props.orders}
                 />
               ) : (
@@ -55,4 +58,6 @@ const mapStateToProps = (state) => {
     orders: state.orders.orders,
   };
 };
-export default connect(mapStateToProps, { showOrderByCustomerId })(MyOrders);
+export default connect(mapStateToProps, { updateOrder,showAllOrders })(
+  AllOrders
+);

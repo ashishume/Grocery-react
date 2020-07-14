@@ -4,10 +4,14 @@ const Loader = () => {
   return (
     <React.Fragment>
       {
-        <div className="overlay">
-          <div className="spinner">
-            <div className="ui massive active centered inline loader"></div>
-          </div>
+        // <div className="overlay">
+        //   <div className="spinner">
+        //     <div className="ui massive active centered inline loader"></div>
+        //   </div>
+        // </div>
+
+        <div className="loader">
+          <div className="loader__element"></div>
         </div>
       }
     </React.Fragment>

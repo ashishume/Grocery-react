@@ -10,7 +10,6 @@ import {
 } from "../store/actions/category";
 import Navbar from "../Shared/Navbar/Navbar";
 import CategoryEditModal from "../Shared/Modals/CategoryEditModal";
-// import Navbar from "../Shared/Navbar/Navbar";
 class Category extends Component {
   state = {
     toggleCategoryModal: false,

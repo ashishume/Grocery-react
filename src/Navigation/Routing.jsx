@@ -1,7 +1,16 @@
-import ProtectedRoutes from "./ProtectedRoutes";
 import React, { Suspense, Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Loader from "../Shared/Loader/Loader";
+import ProtectedRoutes from "./ProtectedRoutes";
+import AdminProtectedRoutes from "./AdminProtectedRoutes";
+
+const AllOrders = React.lazy(() => import("../containers/AllOrders"));
+const PrivacyPolicy = React.lazy(() =>
+  import("../components/PrivacyPolicy/PrivacyPolicy")
+);
+const TermsAndCondition = React.lazy(() =>
+  import("../components/TermsAndCondition/TermsAndCondition")
+);
 const PaymentSuccess = React.lazy(() => import("../containers/PaymentSuccess"));
 const MyOrders = React.lazy(() => import("../containers/MyOrders"));
 const Orders = React.lazy(() => import("../containers/Orders"));
@@ -10,6 +19,9 @@ const Signup = React.lazy(() => import("../containers/Auth/Signup/Signup"));
 const Dashboard = React.lazy(() => import("../containers/Dashboard"));
 const Category = React.lazy(() => import("../containers/Category"));
 const Product = React.lazy(() => import("../containers/Product"));
+const AdminPanelAccess = React.lazy(() =>
+  import("../containers/AdminPanelAccess")
+);
 const ImageLinksTable = React.lazy(() =>
   import("../components/ImageLinksTable/ImageLinksTable")
 );
@@ -31,18 +43,45 @@ class MainNavigation extends Component {
             <Route path="/category/:id" exact component={ShowAllProductsList} />
             <Route path="/grocery/:id" exact component={ProductDetails} />
             <Route path="/checkout/cart" exact component={CheckoutCart} />
+            <Route path="/privacy-policy" exact component={PrivacyPolicy} />
+            <Route
+              path="/terms-and-condition"
+              exact
+              component={TermsAndCondition}
+            />
             {/*Protected Routes */}
 
-            <ProtectedRoutes path="/add-product" exact component={Product} />
             <ProtectedRoutes
               path="/payment-complete"
               exact
               component={PaymentSuccess}
             />
+
             <ProtectedRoutes path="/my-orders" exact component={MyOrders} />
             <ProtectedRoutes path="/checkout/orders" exact component={Orders} />
-            <ProtectedRoutes path="/add-category" exact component={Category} />
-            <ProtectedRoutes
+
+            {/* Admin routes */}
+            <AdminProtectedRoutes
+              path="/admin-access-details"
+              exact
+              component={AdminPanelAccess}
+            />
+            <AdminProtectedRoutes
+              path="/all-orders"
+              exact
+              component={AllOrders}
+            />
+            <AdminProtectedRoutes
+              path="/add-product"
+              exact
+              component={Product}
+            />
+            <AdminProtectedRoutes
+              path="/add-category"
+              exact
+              component={Category}
+            />
+            <AdminProtectedRoutes
               path="/add-image-link"
               exact
               component={ImageLinksTable}

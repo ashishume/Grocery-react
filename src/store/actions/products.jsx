@@ -12,7 +12,7 @@ export const addProducts = (formValues) => async (dispatch) => {
   if (response.status === 200) dispatch(reset("ProductForm"));
 };
 export const showAllLatestProducts = () => async (dispatch) => {
-  const response = await HttpService.get(`${API_NAME.PRODUCT}/latest`);
+  const response = await HttpService.get(`${API_NAME.PRODUCT}latest`);
 
   dispatch({
     type: ActionType.SHOW_LATEST_PRODUCTS,
@@ -20,7 +20,7 @@ export const showAllLatestProducts = () => async (dispatch) => {
   });
 };
 export const showProductsByCategoryId = (params) => async (dispatch) => {
-  const response = await HttpService.get(API_NAME.PRODUCT + "/" + params);
+  const response = await HttpService.get(API_NAME.PRODUCT + params);
 
   dispatch({
     type: ActionType.SHOW_PRODUCTS_BY_CATEGORY_ID,
@@ -38,10 +38,7 @@ export const showProductsById = (params) => async (dispatch) => {
   });
 };
 export const updateProduct = (params, formValues) => async (dispatch) => {
-  const response = await HttpService.put(
-    API_NAME.PRODUCT + "/" + params,
-    formValues
-  );
+  const response = await HttpService.put(API_NAME.PRODUCT + params, formValues);
 
   dispatch({
     type: ActionType.UPDATE_PRODUCT,
