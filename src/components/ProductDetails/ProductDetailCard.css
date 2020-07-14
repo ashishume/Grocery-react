@@ -42,6 +42,19 @@
   font-size: 16px;
 }
 
+.stock-price-display {
+  color: green;
+  font-weight: 800;
+  font-size: 25px;
+}
+.cod-text {
+  font-weight: 300;
+  font-size: 20px;
+}
+.savings-amount-text {
+  font-size: 15px;
+  font-weight: bold;
+}
 @media screen and (max-width: 768px) {
   .product-showPrice {
     font-size: 20px;

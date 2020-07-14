@@ -49,14 +49,19 @@ const ProductDetailCard = ({
           <div className="row">
             <div className="col-sm-6">
               <div className="product-image-container">
-                <img src={content.image} alt="product" className="product-image" />
+                <img
+                  src={content.image}
+                  alt="product"
+                  className="product-image"
+                />
               </div>
             </div>
             <div className="col-sm-6">
               <h3 className="display-item-name">
                 {content.name.substring(0, 76)}
               </h3>
-
+              <p className="stock-price-display">In stock</p>
+              <p className="cod-text">Cash on delivery available</p>
               <div className="product-showPrice">
                 <p>
                   <strike>M.R.P. ₹ {content.showPrice}</strike>
@@ -64,6 +69,12 @@ const ProductDetailCard = ({
               </div>
               <div className="product-originalPrice">
                 <p>Price ₹{content.originalPrice}</p>
+              </div>
+              <div className="savings-amount-text">
+                <p>
+                  Your saving ₹
+                  {parseInt(content.showPrice - content.originalPrice)}
+                </p>
               </div>
               <div className="itemQuantity">
                 {!isVisible ? (
@@ -116,6 +127,10 @@ const ProductDetailCard = ({
           </div>
         </div>
       }
+      <br/>
+      <br/>
+      <br/>
+      <br/>
     </Fragment>
   );
 };

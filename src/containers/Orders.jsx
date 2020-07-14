@@ -6,10 +6,18 @@ import { GetAllStorageData } from "../Shared/StorageService";
 import history from "../history";
 import { addOrders, showAllOrders } from "../store/actions/orders";
 import { connect } from "react-redux";
-import { Button } from "semantic-ui-react";
+import { Button, Dropdown } from "semantic-ui-react";
 import HttpService from "../API/HttpService";
 import { API_NAME } from "../API/ApiPaths";
 class Orders extends Component {
+  paymentOptions = [
+    { key: "Online Payment", text: "Online Payment", value: "Online Payment" },
+    {
+      key: "Cash on Delivery",
+      text: "Cash on Delivery",
+      value: "Cash on Delivery",
+    },
+  ];
   onSaveAdress = (e) => {
     localStorage.setItem("phone", e.phone);
     const address = `City:${e.city}, PIN code:${e.pincode}, State:${e.state}, Address:${e.address}, Landmark:${e.landmark}, Phone:${e.phone}`;
@@ -17,21 +25,19 @@ class Orders extends Component {
     this.setState({
       addressSaved: true,
     });
-    // this.props.addOrders(body);
   };
   state = {
     cartInfo: [],
     addressSaved: false,
+    isOnline: true,
+    modeOfPayment: "Online Payment",
   };
 
   componentDidMount() {
     this.setState({
       cartInfo: GetAllStorageData(),
     });
-
     this.props.showAllOrders();
-
-    // window.location.href = "https://www.google.com/";
   }
 
   onClickPaymentHandler = () => {
@@ -54,13 +60,18 @@ class Orders extends Component {
       Address: localStorage.getItem("address"),
       productDetails: productDetails,
       totalPricePaid: originalPrice,
+      modeOfPayment: this.state.modeOfPayment,
     };
 
-    const data = JSON.stringify(body, function replacer(key, value) {
-      return value;
-    });
-    localStorage.setItem("pendingOrder", data);
-    this.makePayment(body.totalPricePaid);
+    if (this.state.modeOfPayment === "Online Payment") {
+      const data = JSON.stringify(body, function replacer(key, value) {
+        return value;
+      });
+      localStorage.setItem("pendingOrder", data);
+      this.makePayment(body.totalPricePaid);
+    } else {
+      this.props.addOrders(body);
+    }
   };
 
   makePayment = (amount) => {
@@ -85,6 +96,12 @@ class Orders extends Component {
       addressSaved: false,
     });
   };
+  onChangeOfModeOfPaymentDetails = (e, data) => {
+    this.setState({
+      modeOfPayment: data.value,
+    });
+  };
+
   render() {
     const body = {
       name: localStorage.getItem("name"),
@@ -115,6 +132,18 @@ class Orders extends Component {
               )}
             </div>
             <div className="col-sm-6">
+              <br />
+              <br />
+              <Dropdown
+                fluid
+                value="Online Payment"
+                placeholder="Mode of payment"
+                onChange={(e, data) =>
+                  this.onChangeOfModeOfPaymentDetails(e, data)
+                }
+                selection
+                options={this.paymentOptions}
+              />
               <CheckOutCalculation
                 onClickPaymentHandler={() => this.onClickPaymentHandler()}
                 disabledButton={

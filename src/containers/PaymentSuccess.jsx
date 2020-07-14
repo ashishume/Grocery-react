@@ -4,13 +4,10 @@ import { addOrders } from "../store/actions/orders";
 import { connect } from "react-redux";
 import Navbar from "../Shared/Navbar/Navbar";
 import history from "../history";
-import queryString from "query-string";
 
 class PaymentSuccess extends Component {
 
   componentDidMount() {
-    const { location } = this.props;
-    const query = queryString.parse(location.search);
     const pendingOrder = JSON.parse(localStorage.getItem("pendingOrder"));
     this.props.addOrders(pendingOrder);
   }

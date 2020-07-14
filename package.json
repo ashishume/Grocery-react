@@ -6,7 +6,6 @@
     "axios": "^0.19.2",
     "firebase": "^7.15.5",
     "lodash": "^4.17.19",
-    "query-string": "^6.13.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-multi-carousel": "^2.5.5",

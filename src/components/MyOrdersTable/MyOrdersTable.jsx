@@ -14,76 +14,69 @@ const MyOrdersTable = (props) => {
     headers = Object.keys(props.orders[0]);
   }
 
-
-
   return (
     <Fragment>
-      <Table>
-        <Table.Header>
-          <Table.Row>
-            {headers.map((data, i) => {
+      <div className="table-responsive">
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              {headers.map((data, i) => {
+                return (
+                  <Fragment key={i}>
+                    {data !== "_id" && data !== "customerId" ? (
+                      <td>{convertCase(data)}</td>
+                    ) : null}
+                  </Fragment>
+                );
+              })}
+            </tr>
+          </thead>
+          <tbody>
+            {props.orders.map((items, i) => {
               return (
-                <Fragment key={i}>
-                  {data !== "_id" && data !== "customerId" ? (
-                    <Table.HeaderCell>{convertCase(data)}</Table.HeaderCell>
+                <tr key={i}>
+                  <td>{items.customerName}</td>
+                  <td>₹ {items.totalPricePaid}</td>
+                  <td>
+                    {items.productDetails.map((value, index) => {
+                      return (
+                        <Fragment key={index}>
+                          <strong>Name:</strong>
+                          <span className="productDetailsTable">
+                            {value.productName}
+                          </span>
+                          <br />
+                          <strong>Quantity:</strong>
+                          <span className="productDetailsTable">
+                            {value.quantity}
+                          </span>
+                          <br />
+                          <strong>Price:</strong>
+                          <span className="productDetailsTable">
+                            ₹ {value.rate}
+                          </span>
+                          <br />
+                        </Fragment>
+                      );
+                    })}
+                  </td>
+                  <td>{items.Address}</td>
+                  <td>{items.deliveryStatus}</td>
+                  <td>{new Date(items.orderedDate).toLocaleDateString()}</td>
+                  {items.deliveredDate ? (
+                    <td>
+                      {new Date(items.deliveredDate).toLocaleDateString()}
+                    </td>
                   ) : null}
-                </Fragment>
+                  {items.inRouteDate ? (
+                    <td>{new Date(items.inRouteDate).toLocaleDateString()}</td>
+                  ) : null}
+                </tr>
               );
             })}
-          </Table.Row>
-        </Table.Header>
-
-        <Table.Body>
-          {props.orders.map((items, i) => {
-            return (
-              <Table.Row key={i}>
-                <Table.Cell>{items.customerName}</Table.Cell>
-                <Table.Cell>₹ {items.totalPricePaid}</Table.Cell>
-                <Table.Cell>
-                  {items.productDetails.map((value, index) => {
-                    return (
-                      <Fragment key={index}>
-                        <strong>Name:</strong>
-                        <span className="productDetailsTable">
-                          {value.productName}
-                        </span>
-                        <br />
-                        <strong>Quantity:</strong>
-                        <span className="productDetailsTable">
-                          {value.quantity}
-                        </span>
-                        <br />
-                        <strong>Price:</strong>
-                        <span className="productDetailsTable">
-                          ₹ {value.rate}
-                        </span>
-                        <br />
-                        <Divider />
-                      </Fragment>
-                    );
-                  })}
-                </Table.Cell>
-                <Table.Cell>{items.Address}</Table.Cell>
-                <Table.Cell>{items.deliveryStatus}</Table.Cell>
-
-                <Table.Cell>
-                  {new Date(items.orderedDate).toLocaleDateString()}
-                </Table.Cell>
-                {items.deliveredDate ? (
-                  <Table.Cell>
-                    {new Date(items.deliveredDate).toLocaleDateString()}
-                  </Table.Cell>
-                ) : null}
-                {items.inRouteDate ? (
-                  <Table.Cell>
-                    {new Date(items.inRouteDate).toLocaleDateString()}
-                  </Table.Cell>
-                ) : null}
-              </Table.Row>
-            );
-          })}
-        </Table.Body>
-      </Table>
+          </tbody>
+        </table>
+      </div>
     </Fragment>
   );
 };
