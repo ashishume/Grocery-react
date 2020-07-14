@@ -136,7 +136,7 @@ class Orders extends Component {
               <br />
               <Dropdown
                 fluid
-                value="Online Payment"
+                value={this.state.modeOfPayment}
                 placeholder="Mode of payment"
                 onChange={(e, data) =>
                   this.onChangeOfModeOfPaymentDetails(e, data)

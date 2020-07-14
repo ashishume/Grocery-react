@@ -5,15 +5,22 @@
 .row {
   margin: 15px auto;
 }
-@media screen and (max-width: 768px) {
-  .row {
-    margin: 12px auto;
+ .paragraph-text {
+    font-size: 20px;
+    font-weight: 500;
   }
+@media screen and (max-width: 768px) {
   #original-price {
     margin: 20px auto;
     text-align: center;
   }
   .button-primary {
     width: 100%;
+  }
+
+  .paragraph-text {
+    font-size: 20px;
+    text-align: left;
+    font-weight: 500;
   }
 }

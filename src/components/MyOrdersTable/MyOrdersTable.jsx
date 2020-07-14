@@ -61,6 +61,7 @@ const MyOrdersTable = (props) => {
                     })}
                   </td>
                   <td>{items.Address}</td>
+                  <td>{items.modeOfPayment}</td>
                   <td>{items.deliveryStatus}</td>
                   <td>{new Date(items.orderedDate).toLocaleDateString()}</td>
                   {items.deliveredDate ? (

@@ -18,34 +18,34 @@ const CheckOutCalculation = ({
   return (
     <Fragment>
       {renderPaymentData()}
-      <div className="container">
+      <div className="container" id="payment-details-container">
         <div className="row">
           <div className="col-sm-6">
-            <h3>Payment Details</h3>
+            <p className="paragraph-text">Payment Details</p>
           </div>
         </div>
         <div className="row">
           <div className="col-sm-6">
-            <h3>MRP TOTAL</h3>
+            <p className="paragraph-text">MRP TOTAL</p>
           </div>
           <div className="col-sm-6" style={{ textAlign: "right" }}>
-            <h3>₹ {showPrice}</h3>
+            <p className="paragraph-text">₹ {showPrice}</p>
           </div>
         </div>
         <div className="row">
           <div className="col-sm-6">
-            <h3>Discount</h3>
+            <p className="paragraph-text">Discount</p>
           </div>
           <div className="col-sm-6" style={{ textAlign: "right" }}>
-            <h3> -₹{showPrice - originalPrice}</h3>
+            <p className="paragraph-text"> -₹{showPrice - originalPrice}</p>
           </div>
         </div>
         <div className="row">
           <div className="col-sm-6">
-            <h3>Total amount</h3>
+            <p className="paragraph-text">Total amount</p>
           </div>
           <div className="col-sm-6" style={{ textAlign: "right" }}>
-            <h3> ₹{originalPrice}</h3>
+            <p className="paragraph-text"> ₹{originalPrice}</p>
           </div>
         </div>
         <div className="row">
@@ -57,16 +57,16 @@ const CheckOutCalculation = ({
               border: "solid 1px lightgreen",
             }}
           >
-            <h3>Total savings ₹{showPrice - originalPrice}</h3>
+            <p className="paragraph-text">
+              Total savings ₹{showPrice - originalPrice}
+            </p>
           </div>
         </div>
         <div className="row">
-          <div
-            className="col-sm-6"
-            id="original-price"
-            style={{ textAlign: "right" }}
-          >
-            <h3>Amount payable: ₹{originalPrice}</h3>
+          <div className="col-sm-6" id="original-price">
+            <div style={{ fontSize: "16px", fontWeight: "700" }}>
+              Amount payable: ₹{originalPrice}
+            </div>
           </div>
           <div className="col-sm-6">
             <Button
