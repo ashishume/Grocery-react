@@ -3,14 +3,14 @@ import "firebase/storage";
 import "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD_jpLTKETb3bpMVBLFzTy4ABsfijMj_Vo",
-  authDomain: "shopnsave38.firebaseapp.com",
-  databaseURL: "https://shopnsave38.firebaseio.com",
-  projectId: "shopnsave38",
-  storageBucket: "shopnsave38.appspot.com",
-  messagingSenderId: "1045370244678",
-  appId: "1:1045370244678:web:1c006b3413d5923d808447",
-  measurementId: "G-YQ7LSE6JD1",
+  apiKey: "AIzaSyBxl27YFaUhWcAex6Z-ckV1g87JckQPTF8",
+  authDomain: "shopandsave39.firebaseapp.com",
+  databaseURL: "https://shopandsave39.firebaseio.com",
+  projectId: "shopandsave39",
+  storageBucket: "shopandsave39.appspot.com",
+  messagingSenderId: "793594583862",
+  appId: "1:793594583862:web:5f17637511d15ba3f93197",
+  measurementId: "G-EDDP8G8NB1",
 };
 firebase.initializeApp(firebaseConfig);
 
