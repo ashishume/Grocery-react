@@ -29,13 +29,14 @@ const ProductForm = (props) => {
           type="number"
           name="originalPrice"
           component={RenderField}
-          label="(₹) Original Price*"
+          label="(₹) Selling Price*"
         />
+
         <Field
           type="number"
           name="showPrice"
           component={RenderField}
-          label="(₹) Labeled Price*"
+          label="(₹) MRP Price* (Note: MRP price must be greater than Selling Price)"
         />
       </FormGroup>
 
@@ -74,11 +75,12 @@ const ProductForm = (props) => {
 
 const validate = (values) => {
   const errors = {};
-  if (values.showPrice <= values.originalPrice) {
-    errors.showPrice = "Labeled price must be greater than Original Price";
-  }
-  if (values.showPrice <= values.originalPrice) {
-    errors.originalPrice = "Labeled price must be greater than Original Price";
+  if (
+    values.showPrice &&
+    values.originalPrice &&
+    parseInt(values.showPrice) < parseInt(values.originalPrice)
+  ) {
+    errors.showPrice = "MRP price must be greater than Selling Price";
   }
   if (!values.name) errors.name = "Required";
   if (!values.originalPrice) errors.originalPrice = "Required";

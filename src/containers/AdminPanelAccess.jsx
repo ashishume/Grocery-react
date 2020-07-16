@@ -34,6 +34,9 @@ class AdminPanelAccess extends Component {
                   <List.Item>All Orders</List.Item>
                 </Link>
                 <Divider />
+                <Link to="/add-image-link">
+                  <List.Item>Change banner images</List.Item>
+                </Link>
               </List>
             </div>
           </div>

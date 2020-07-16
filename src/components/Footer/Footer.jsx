@@ -3,7 +3,6 @@ import "./Footer.css";
 import { List, Icon } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import history from "../../history";
 const Footer = (props) => {
   const openURL = (name) => {
     if (name == "WhatsApp") window.open("https://wa.me/919779140325", "_blank");
@@ -12,14 +11,15 @@ const Footer = (props) => {
         "https://www.facebook.com/Shop-n-Save-The-Grocery-Shop-100709581684634",
         "_blank"
       );
-    if (name == "Instagram") window.open("http://instagram.com/", "_blank");
+    if (name == "Instagram")
+      window.open("http://instagram.com/shopnsave39", "_blank");
   };
 
   return (
     <div className="footer-container">
       <div className="container">
         <div className="row">
-          <div className="col-sm-4">
+          <div className="col-sm-3">
             <List style={{ cursor: "pointer" }}>
               <List.Item>
                 <strong>Top Categories</strong>
@@ -33,7 +33,7 @@ const Footer = (props) => {
               })}
             </List>
           </div>
-          <div className="col-sm-4">
+          <div className="col-sm-3">
             <List>
               <List.Item>
                 <strong>CONTACT US</strong>
@@ -67,7 +67,7 @@ const Footer = (props) => {
               </Link>
             </List>
           </div>
-          <div className="col-sm-4">
+          <div className="col-sm-3">
             <List>
               <List.Item>
                 <strong> CUSTOMER CARE </strong>
@@ -78,6 +78,20 @@ const Footer = (props) => {
               <List.Item>Phone: +919779140325 </List.Item>
               <List.Item>Email: shopnsavelive@gmail.com</List.Item>
             </List>
+          </div>
+          <div className="col-sm-3" id="map-container">
+            <iframe
+              src={
+                "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3423.4727753129864!2d75.8925232!3d30.901406699999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a83a4760f8753%3A0x40b4314b82fd60c5!2sShop%20n%20Save%20Grocery%20Store!5e0!3m2!1sen!2sin!4v1594920537622!5m2!1sen!2sin"
+              }
+              width={"280"}
+              height={"170"}
+              frameBorder="0"
+              style={{ border: 0}}
+              allowFullScreen=""
+              aria-hidden="false"
+              tabIndex="0"
+            ></iframe>
           </div>
         </div>
       </div>
