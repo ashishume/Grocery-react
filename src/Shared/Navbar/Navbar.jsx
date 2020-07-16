@@ -3,7 +3,7 @@ import { showCategory } from "../../store/actions/category";
 import { connect } from "react-redux";
 import history from "../../history";
 import "./Navbar.css";
-import { Popup, Icon } from "semantic-ui-react";
+import { Popup, Icon, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { checkAuthStatus } from "../AuthService";
 import _ from "lodash";
@@ -103,28 +103,21 @@ class Navbar extends Component {
 
           <span className="navbar-text">
             {!checkAuthStatus() ? (
-              <Popup
-                content="Signin"
-                trigger={
-                  <Icon
-                    size="big"
-                    onClick={() => this.handleItemClick("signin")}
-                    name="sign-in"
-                  />
-                }
-              />
+              <Fragment>
+                <Button
+                  color="blue"
+                  onClick={() => this.handleItemClick("signin")}
+                >
+                  Signin
+                </Button>
+                &nbsp; &nbsp;
+              </Fragment>
             ) : (
               <Fragment>
-                <Popup
-                  content="Signout"
-                  trigger={
-                    <Icon
-                      size="big"
-                      onClick={() => this.onSignOutHandler()}
-                      name="sign-out"
-                    />
-                  }
-                />
+                <Button color="red" onClick={() => this.onSignOutHandler()}>
+                  Signout
+                </Button>
+                &nbsp; &nbsp;
               </Fragment>
             )}
             <Icon

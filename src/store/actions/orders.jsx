@@ -12,10 +12,16 @@ export const addOrders = (formValues) => async (dispatch) => {
 
   if (response.status === 200) {
     const mailBody = JSON.parse(localStorage.getItem("mailData"));
+    const ownerMailBody = {
+      email: "shopnsavelive@gmail.com",
+      subject: "New order arrived",
+      html: mailBody.html,
+    };
     await SendMail(mailBody);
-    await localStorage.removeItem("pendingOrder");
-    await localStorage.removeItem("cartItems");
-    await localStorage.removeItem("mailData");
+    await SendMail(ownerMailBody);
+    localStorage.removeItem("pendingOrder");
+    localStorage.removeItem("cartItems");
+    localStorage.removeItem("mailData");
     await history.push("/my-orders");
   }
 };

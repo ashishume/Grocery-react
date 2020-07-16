@@ -4,7 +4,6 @@ import { addOrders } from "../store/actions/orders";
 import { connect } from "react-redux";
 import Navbar from "../Shared/Navbar/Navbar";
 import history from "../history";
-import SendMail from "../Shared/SendMail";
 
 class PaymentSuccess extends Component {
   componentDidMount() {
