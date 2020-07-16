@@ -1,21 +1,37 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import "./MyOrdersTable.css";
-import { Dropdown } from "semantic-ui-react";
+import { Dropdown, Input } from "semantic-ui-react";
 
 const MyOrdersTable = (props) => {
   const options = [
     {
-      key: "In Route",
+      key: 2,
       text: "In Route",
       value: 2,
     },
     {
-      key: "In Delivered",
-      text: "In Delivered",
+      key: 3,
+      text: "Delivered Completed",
       value: 3,
     },
   ];
-
+  const defaultDeliveryOptions = [
+    {
+      key: 2,
+      text: "In Route",
+      value: 2,
+    },
+    {
+      key: 3,
+      text: "Delivered",
+      value: 3,
+    },
+    {
+      key: 1,
+      text: "Ordered",
+      value: 1,
+    },
+  ];
   const convertCase = (value) => {
     const result = value.replace(/([A-Z])/g, " $1");
     const finalResult = result.charAt(0).toUpperCase() + result.slice(1);
@@ -32,8 +48,45 @@ const MyOrdersTable = (props) => {
   if (props.orders.length) {
     headers = Object.keys(props.orders[0]);
   }
+
+  // ORDERED: "Ordered", //1
+  // ROUTE: "In Route", //2
+  // DELIVERED: "Delivered", //3
+  const [orders, setOrders] = useState([]);
+  const [searchOrders, setSearchOrders] = useState([]);
+  useEffect(() => {
+    setOrders(props.orders);
+  }, [searchOrders]);
+
+  const onSearchOrders = (data) => {
+    let tempArray = [];
+    if (data.value == 3) {
+      props.orders.map((value) => {
+        if (value.deliveryStatus == "Delivered") tempArray.push(value);
+      });
+      setOrders(tempArray);
+    } else if (data.value == 2) {
+      props.orders.map((value) => {
+        if (value.deliveryStatus == "In Route") tempArray.push(value);
+      });
+      setOrders(tempArray);
+    } else if (data.value == 1) {
+      props.orders.map((value) => {
+        if (value.deliveryStatus == "Ordered") tempArray.push(value);
+      });
+      setOrders(tempArray);
+    }
+  };
+
   return (
     <Fragment>
+      <Dropdown
+        placeholder="Select Filter"
+        fluid
+        selection
+        onChange={(e, data) => onSearchOrders(data)}
+        options={defaultDeliveryOptions}
+      />
       <div className="table-responsive">
         <table className="table table-striped">
           <thead>
@@ -51,7 +104,7 @@ const MyOrdersTable = (props) => {
             </tr>
           </thead>
           <tbody>
-            {props.orders.map((items, i) => {
+            {orders.map((items, i) => {
               return (
                 <tr key={i}>
                   <td>{items.customerName}</td>
@@ -82,16 +135,14 @@ const MyOrdersTable = (props) => {
                   <td>{items.modeOfPayment}</td>
                   <td>{items.Address}</td>
                   <td>{items.deliveryStatus}</td>
-                  <td>{new Date(items.orderedDate).toLocaleDateString()}</td>
+                  <td>{new Date(items.orderedDate).toDateString()}</td>
                   {items.deliveredDate !== "N/A" ? (
-                    <td>
-                      {new Date(items.deliveredDate).toLocaleDateString()}
-                    </td>
+                    <td>{new Date(items.deliveredDate).toDateString()}</td>
                   ) : (
                     <td>N/A</td>
                   )}
                   {items.inRouteDate !== "N/A" ? (
-                    <td>{new Date(items.inRouteDate).toLocaleDateString()}</td>
+                    <td>{new Date(items.inRouteDate).toDateString()}</td>
                   ) : (
                     <td>N/A</td>
                   )}

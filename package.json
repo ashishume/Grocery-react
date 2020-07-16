@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.19.2",
+    "emailjs": "^3.2.1",
     "firebase": "^7.15.5",
     "lodash": "^4.17.19",
     "react": "^16.13.1",
