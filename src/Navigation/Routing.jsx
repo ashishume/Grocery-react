@@ -4,6 +4,12 @@ import Loader from "../Shared/Loader/Loader";
 import ProtectedRoutes from "./ProtectedRoutes";
 import AdminProtectedRoutes from "./AdminProtectedRoutes";
 
+const NewPassword = React.lazy(() =>
+  import("../components/NewPassword/NewPassword")
+);
+const ForgotPassword = React.lazy(() =>
+  import("../components/ForgotPassword/ForgotPassword")
+);
 const AllOrders = React.lazy(() => import("../containers/AllOrders"));
 const PrivacyPolicy = React.lazy(() =>
   import("../components/PrivacyPolicy/PrivacyPolicy")
@@ -49,6 +55,12 @@ class MainNavigation extends Component {
               exact
               component={TermsAndCondition}
             />
+            <Route
+              path="/auth/forgot-password"
+              exact
+              component={ForgotPassword}
+            />
+            <Route path="/auth/new-password/:id" exact component={NewPassword} />
             {/*Protected Routes */}
 
             <ProtectedRoutes

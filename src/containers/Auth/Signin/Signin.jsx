@@ -37,7 +37,9 @@ class Signin extends Component {
               <SigninForm submitHandler={(e) => this.submitHandler(e)} />
               <p className="signin-description-footer">
                 Dont have an account?
-                <Link to="/auth/signup"> Signup here</Link>
+                <Link to="/auth/signup"> Signup here</Link> | 
+                Forgot password?
+                <Link to="/auth/forgot-password"> click here</Link>
               </p>
             </div>
           </div>

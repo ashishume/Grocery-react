@@ -9,9 +9,9 @@ import ItemListScroller from "./ItemListScroller";
 import "../GlobalStyle.css";
 import ImageCarousel from "../components/ImageCarousel/ImageCarousel";
 class Dashboard extends Component {
-  addProductOnCartHandler = (e) => {
-    // console.log("click");
-  };
+  // addProductOnCartHandler = (e) => {
+  //   // console.log("click");
+  // };
 
   routeToCategoryHandler = (value) => {
     // console.log(value);
