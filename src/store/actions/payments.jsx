@@ -6,5 +6,4 @@ import { API_NAME } from "../../API/ApiPaths";
 
 export const showPaymentData = async (id) => {
   const response = await HttpService.get(`${API_NAME.PAYMENTS}${id}`);
-  console.log(response);
 };

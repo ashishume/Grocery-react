@@ -25,7 +25,6 @@ const SearchBar = () => {
   };
 
   const onSearchResultsItemHandler = (e) => {
-    console.log(e._id);
     history.push(`/grocery/${e._id}`);
   };
 

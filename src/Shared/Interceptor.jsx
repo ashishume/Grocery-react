@@ -34,7 +34,7 @@ class LoaderComponent extends Component {
           errorMessage: error.response.data.message,
         });
 
-        console.log("==>", error.response.data.message);
+        // console.log("==>", error.response.data.message);
 
         return Promise.reject(error);
       }

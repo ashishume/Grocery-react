@@ -4,9 +4,9 @@ import { addOrders } from "../store/actions/orders";
 import { connect } from "react-redux";
 import Navbar from "../Shared/Navbar/Navbar";
 import history from "../history";
+import SendMail from "../Shared/SendMail";
 
 class PaymentSuccess extends Component {
-
   componentDidMount() {
     const pendingOrder = JSON.parse(localStorage.getItem("pendingOrder"));
     this.props.addOrders(pendingOrder);
@@ -23,6 +23,7 @@ class PaymentSuccess extends Component {
                 <h2 style={{ fontWeight: "lighter" }}>
                   Congratulations your order has been confirmed
                 </h2>
+                {/* <p>You will be redirected in 5 seconds</p> */}
                 <Icon name="check circle" size="massive" color="green" />
                 <br />
                 <br />

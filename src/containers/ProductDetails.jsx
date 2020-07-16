@@ -55,6 +55,6 @@ class ProductDetails extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { product: state.products.products };
+  return { product: state.products.productsById };
 };
 export default connect(mapStateToProps, { showProductsById })(ProductDetails);

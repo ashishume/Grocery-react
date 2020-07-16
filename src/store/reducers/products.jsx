@@ -3,7 +3,8 @@ import * as ActionTypes from "../actions/actionTypes";
 const initialState = {
   products: [],
   categoryProducts: [],
-  productsResponse:[]
+  productsResponse:[],
+  productsById:[]
 };
 
 const productsReducer = (state = initialState, action) => {
@@ -26,7 +27,7 @@ const productsReducer = (state = initialState, action) => {
     case ActionTypes.SHOW_PRODUCTS_BY_PRODUCT_ID:
       return {
         ...state,
-        products: action.payload,
+        productsById: action.payload,
       };
     case ActionTypes.UPDATE_PRODUCT:
       return {

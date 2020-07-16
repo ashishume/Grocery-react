@@ -3,6 +3,7 @@ import "./Footer.css";
 import { List, Icon } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import history from "../../history";
 const Footer = (props) => {
   const openURL = (name) => {
     if (name == "WhatsApp") window.open("https://wa.me/919779140325", "_blank");
@@ -19,7 +20,6 @@ const Footer = (props) => {
       <div className="container">
         <div className="row">
           <div className="col-sm-4">
-            {console.log(props.category)}
             <List style={{ cursor: "pointer" }}>
               <List.Item>
                 <strong>Top Categories</strong>
@@ -55,6 +55,16 @@ const Footer = (props) => {
                   name="instagram"
                 />
               </List.Item>
+              <Link to="/terms-and-condition">
+                <List.Item onClick={() => openURL("Terms")}>
+                  Terms and condition
+                </List.Item>
+              </Link>
+              <Link to="/privacy-policy">
+                <List.Item onClick={() => openURL("Privacy")}>
+                  Privacy Policy
+                </List.Item>
+              </Link>
             </List>
           </div>
           <div className="col-sm-4">

@@ -21,13 +21,13 @@ class Dashboard extends Component {
   onItemClickEvent = (e) => {
     // console.log(e);
   };
-  
+
   render() {
     return (
       <div>
         <Navbar />
         <ImageCarousel onItemClickEvent={(e) => this.onItemClickEvent(e)} />
-        <Container style={{margin:'0 auto',display:'block'}}>
+        <Container style={{ margin: "0 auto", display: "block" }}>
           <h2 className="heading">
             Shop by categories <Icon name="shop" />
           </h2>

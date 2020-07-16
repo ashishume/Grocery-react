@@ -3,7 +3,6 @@ import OrdersForm from "../components/Orders/OrdersForm";
 import Navbar from "../Shared/Navbar/Navbar";
 import CheckOutCalculation from "../components/PaymentCalculation/CheckOutCalculation";
 import { GetAllStorageData } from "../Shared/StorageService";
-import history from "../history";
 import { addOrders, showAllOrders } from "../store/actions/orders";
 import { connect } from "react-redux";
 import { Button, Dropdown } from "semantic-ui-react";
@@ -54,6 +53,35 @@ class Orders extends Component {
       });
     });
 
+    const mailBody = {
+      email: localStorage.getItem("email"),
+      subject: `Your Order has been successfully placed`,
+      html: ` <div
+    border: solid 1px gray;
+      border-radius: 10px;
+      text-align: left;
+      padding: 10px;
+      margin: 10px;
+      width: 400px;
+      height: 400px;
+      @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+      font-family: 'Roboto', sans-serif;
+      font-size: 20px;
+      line-height: 30px;
+    "
+  >
+    Hi Ashish Debnath,<br />
+    Your order has been placed successfully<br />
+    Please refer to the my orders get more details
+    <a href="https://shopnsave39.com/my-orders" target="_blank">click here</a>
+    Order details:<br/ >
+    Name: ${localStorage.getItem("name")}<br />
+    Address:${localStorage.getItem("address")}<br />
+    Total Amount: ₹ ${originalPrice}<br />
+    Paid via: ${this.state.modeOfPayment}<br />
+    <br />
+  </div>`,
+    };
     const body = {
       customerId: localStorage.getItem("userId"),
       customerName: localStorage.getItem("name"),
@@ -62,7 +90,8 @@ class Orders extends Component {
       totalPricePaid: originalPrice,
       modeOfPayment: this.state.modeOfPayment,
     };
-
+    const mailData = JSON.stringify(mailBody);
+    localStorage.setItem("mailData", mailData);
     if (this.state.modeOfPayment === "Online Payment") {
       const data = JSON.stringify(body, function replacer(key, value) {
         return value;
