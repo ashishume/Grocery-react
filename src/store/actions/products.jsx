@@ -45,3 +45,11 @@ export const updateProduct = (params, formValues) => async (dispatch) => {
     payload: response.data,
   });
 };
+export const deleteProduct = (params) => async (dispatch) => {
+  const response = await HttpService.delete(API_NAME.PRODUCT + params);
+
+  dispatch({
+    type: ActionType.DELETE_PRODUCT,
+    payload: response.data,
+  });
+};

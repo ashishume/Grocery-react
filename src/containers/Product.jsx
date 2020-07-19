@@ -7,6 +7,7 @@ import {
   showProductsByCategoryId,
   addProducts,
   updateProduct,
+  deleteProduct,
 } from "../store/actions/products";
 import ProductTable from "../components/ProductTable/ProductTable";
 import Navbar from "../Shared/Navbar/Navbar";
@@ -43,6 +44,11 @@ class Product extends Component {
       toggleProductModal: true,
       editData: data,
     });
+  };
+
+  deleteClickHandler = async (data) => {
+    await this.props.deleteProduct(data._id);
+    await this.props.showProductsByCategoryId(data._id);
   };
 
   submitEditProductHandler = async (data) => {
@@ -87,6 +93,9 @@ class Product extends Component {
                 {this.props.categoryProducts ? (
                   <ProductTable
                     onClickEditButton={(data) => this.editClickHandler(data)}
+                    onClickDeleteButton={(data) =>
+                      this.deleteClickHandler(data)
+                    }
                     isSelected={this.state.categorySelected}
                     products={this.props.categoryProducts}
                   />
@@ -126,5 +135,6 @@ export default connect(mapStateToProps, {
   showCategory,
   showProductsByCategoryId,
   addProducts,
+  deleteProduct,
   updateProduct,
 })(Product);

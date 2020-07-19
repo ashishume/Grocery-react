@@ -29,6 +29,11 @@ const productsReducer = (state = initialState, action) => {
         ...state,
         productsById: action.payload,
       };
+    case ActionTypes.DELETE_PRODUCT:
+      return {
+        ...state,
+        productsResponse: action.payload,
+      };
     case ActionTypes.UPDATE_PRODUCT:
       return {
         ...state,
